@@ -1,0 +1,17 @@
+@mixin boxedSideHeadings($fontSize, $lineHeightSize, $letterSpacingSize) {
+    font-size: $fontSize;
+    line-height: $lineHeightSize;
+    letter-spacing: $letterSpacingSize;
+}
+
+@mixin flexWrap($flex, $wrap) {
+    display: $flex;
+    flex-wrap: $wrap;
+}
+
+@mixin background($cover, $repeat, $position) {
+    background-size: $cover;
+    background-repeat: $repeat;
+    background-position: $position;
+}
+

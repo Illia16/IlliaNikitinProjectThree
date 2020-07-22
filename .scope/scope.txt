@@ -1,0 +1,24 @@
+illia2143@gmail.com
+
+Illia Nikitin
+
+Visual meal generator
+
+Mixing any ingridients on click and if there's a match, 
+the program pops up the meal/drink we made
+
+adding images with nice effects and animations
+adding/removing elements from/to the "fridge"
+
+
+////// pseudo code //////
+1. Generating ingrgidients on screen
+with the abilities to add/remove them to/from
+the table.
+2. Create an "empty table" where chosen ingridients
+will be placed
+3. Create the correct final ingridient array
+4. While adding a new ingridient,
+checking if all ingridients in out table
+match any "final meals", if so, pop up
+the message of what we "cooked".
