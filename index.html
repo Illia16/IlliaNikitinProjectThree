@@ -3,22 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meal generator</title>
 
+    <script src="https://kit.fontawesome.com/7daad3ad0b.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./styles/styles.css">
+    <title>Visual meal generator</title>
 </head>
+
 <body>
-    <div class="wrapper">
+    <header>
+        <!-- <div class="wrapper"> -->
+            <h1>Visual meal generator</h1>
+
+            <div class="headerButton">
+                <button id="toMain">Scroll down</button>
+            </div>
+        <!-- </div> -->
+    </header>
+
+    <main>
+        <section>
+            <div class="wrapper">
         
-        <ul class="ingridients"></ul>
-        
-        <div class="chosenIngridients"></div>
-        
-    </div>
+                <ul class="ingridients"></ul>
+
+                <ul class="chosenIngridients"></ul>
+                
+                <button type="button" class="cooked"><span>All meals</span></button>
+
+                <ul class="cookedMeals">
+                </ul>
+
+            </div>
+        </section>
+
+        <!-- <section>
+            <div class="wrapper">
+            </div>
+        </section> -->
+    </main>
+
+    <footer>
+
+    </footer>
 
     <script src='https://code.jquery.com/jquery-3.4.0.min.js' integrity='sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=' crossorigin='anonymous'></script>
 
     <script src="./script/script.js"></script>
-    <script src="./script/controller.js"></script>
 </body>
 </html>

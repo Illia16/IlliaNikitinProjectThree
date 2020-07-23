@@ -257,7 +257,7 @@ a {
   display: inline-block;
 }
 
-ul, ol {
+ul, li, ol {
   margin: 0;
   padding: 0;
   list-style: none;
@@ -267,6 +267,95 @@ body {
   font-size: 2rem;
 }
 
-ul li {
-  margin: 40px 0;
+h1 {
+  width: 50%;
+  -ms-grid-column-align: end;
+      justify-self: end;
+}
+
+h3 {
+  margin: 0;
+}
+
+header {
+  background: url(../assets/headerBackground.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+  display: -ms-grid;
+  display: grid;
+}
+
+header h1,
+header .headerButton {
+  -ms-flex-item-align: end;
+      -ms-grid-row-align: end;
+      align-self: end;
+}
+
+header .headerButton {
+  margin: 100px 0;
+  -ms-grid-column-align: center;
+      justify-self: center;
+}
+
+main {
+  height: 100vh;
+}
+
+ul.ingridients,
+ul.chosenIngridients,
+ul.cookedMeals {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (minmax(100px, 1fr))[auto-fit];
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  grid-gap: 20px;
+}
+
+ul.ingridients li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+ul.ingridients li > * {
+  margin-top: 20px;
+}
+
+ul li div {
+  width: 100%;
+}
+
+.cooked {
+  position: fixed;
+  right: 0;
+  top: 50%;
+  z-index: 10;
+}
+
+ul.cookedMeals {
+  background: goldenrod;
+  position: fixed;
+  z-index: 5;
+  width: 80%;
+  left: -200%;
+  top: 10%;
+  bottom: 10%;
+  margin: 0;
+  padding: 0;
+  overflow-y: scroll;
+}
+
+ul.cookedMealsShow {
+  left: 10%;
+}
+
+.unlocked {
+  color: white;
 }

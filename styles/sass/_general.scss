@@ -2,6 +2,103 @@ body {
     font-size: 2rem;
 }
 
-ul li {
-    margin: 40px 0;
+h1 {
+    width: 50%;
+    justify-self: end;
+}
+
+h3 {
+    margin: 0;
+}
+
+header {
+    // Background is from unsplash.com made by Brooke Lark
+    background: url(../assets/headerBackground.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+
+    display: grid;
+    // justify-items: end;
+    // align-items: center;
+}
+
+header h1,
+header .headerButton {
+    align-self: end;
+}
+
+header .headerButton {
+    margin: 100px 0;
+    justify-self: center;
+}
+
+
+//// Main ///////
+
+main {
+    height: 100vh;
+}
+
+ul.ingridients,
+ul.chosenIngridients,
+ul.cookedMeals {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    // grid-template-rows: 1fr 1fr 1fr;
+    // justify-items: center;
+    grid-gap: 20px;
+}
+
+ul.ingridients li {
+    // margin: 40px 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+
+
+ul.ingridients li > * {
+    margin-top: 20px;
+}
+
+
+ul li div {
+    width: 100%;
+}
+
+
+// Cooked
+
+.cooked {
+    position: fixed;
+    right: 0;
+    top: 50%;
+    // font-size: 3rem;
+    z-index: 10;
+    // width: 100px;
+    // transform: rotate(90deg);
+}
+
+ul.cookedMeals {
+    background: goldenrod;
+    position: fixed;
+    z-index: 5;
+    width: 80%;
+    left: -200%;
+    top: 10%;
+    bottom: 10%;
+    margin: 0;
+    padding: 0;
+    // opacity: 0.5;
+    overflow-y: scroll;
+}
+
+ul.cookedMealsShow {
+    left: 10%;
+}
+
+.unlocked {
+    color: white;
 }
