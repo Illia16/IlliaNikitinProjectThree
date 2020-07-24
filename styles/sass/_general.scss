@@ -71,17 +71,27 @@ ul li div {
 
 // Cooked
 
-.cooked {
+.cooked,
+.addNew {
     position: fixed;
     right: 0;
-    top: 50%;
     // font-size: 3rem;
     z-index: 10;
     // width: 100px;
     // transform: rotate(90deg);
 }
 
-ul.cookedMeals {
+.cooked {
+    top: 50%;
+}
+
+
+.addNew {
+    top: 60%;
+}
+
+ul.cookedMeals,
+.addNewRecipe {
     background: goldenrod;
     position: fixed;
     z-index: 5;
@@ -90,12 +100,16 @@ ul.cookedMeals {
     top: 10%;
     bottom: 10%;
     margin: 0;
-    padding: 0;
+    padding: 40px;
     // opacity: 0.5;
     overflow-y: scroll;
 }
 
 ul.cookedMealsShow {
+    left: 10%;
+}
+
+.addNewRecipeShow {
     left: 10%;
 }
 

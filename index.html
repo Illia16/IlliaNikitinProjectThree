@@ -33,6 +33,38 @@
                 <ul class="cookedMeals">
                 </ul>
 
+                <button type="button" class="addNew"><span>Add new ingridient(s)/meal/recipe</span></button>
+                <div class="addNewRecipe">
+                    <form action="">
+                        <fieldset>
+                            <label for="name" class="sr-only">Name</label>
+                            <input type="text" id="name" class="name input-fields" name="name" placeholder="Name of ingridient" required>
+
+                            <button id="addIngridient">Add ingridient to database</button>
+                        </fieldset>
+                    </form>
+
+                    <form action="">
+                        <fieldset>
+                                <label for="newMealName" class="sr-only">Name</label>
+                                <input type="text" id="newMealName" class="name input-fields" name="name" placeholder="Name of new meal" required>
+
+                                <div>
+                                    <label for="ingridientForMeal" class="sr-only">Name</label>
+                                    <input type="text" id="ingridientForMeal" class="name input-fields" name="name" placeholder="Ingridient #1" required>
+                                    <button id="addMoreIngridients">Add another ingridient</button>
+                                </div>
+                                
+                                <div class="moreIngridients">
+                                </div>
+
+                                <div>
+                                    <button id="addMeal">Add new meal</button>
+                                </div>
+                        </fieldset>
+                    </form>
+                </div>
+
             </div>
         </section>
 

@@ -332,14 +332,23 @@ ul li div {
   width: 100%;
 }
 
-.cooked {
+.cooked,
+.addNew {
   position: fixed;
   right: 0;
-  top: 50%;
   z-index: 10;
 }
 
-ul.cookedMeals {
+.cooked {
+  top: 50%;
+}
+
+.addNew {
+  top: 60%;
+}
+
+ul.cookedMeals,
+.addNewRecipe {
   background: goldenrod;
   position: fixed;
   z-index: 5;
@@ -348,11 +357,15 @@ ul.cookedMeals {
   top: 10%;
   bottom: 10%;
   margin: 0;
-  padding: 0;
+  padding: 40px;
   overflow-y: scroll;
 }
 
 ul.cookedMealsShow {
+  left: 10%;
+}
+
+.addNewRecipeShow {
   left: 10%;
 }
 

@@ -14,22 +14,28 @@ mealApp.allIngridients = ['banana', 'milk', 'pineapple', 'avocado', 'orange'];
 
 // Filling DOM with available ingridients
 mealApp.availableIngridients = function() {
+    $('.ingridients').text('');
     for (i=0; i < mealApp.allIngridients.length; i++) {
         $('.ingridients').append(`
         <li>
             <h3>${mealApp.allIngridients[i]}</h3>
             <div><img src="./assets/${mealApp.allIngridients[i]}.png" alt="${mealApp.allIngridients[i]}"></img></div>
             <button id="add" value="${mealApp.allIngridients[i]}">Add</button>
-            <button id="remove" value="${mealApp.allIngridients[i]}">Remove</button>
         </li>
         `);
     }
+//            <button id="remove" value="${mealApp.allIngridients[i]}">Remove</button>
+    mealApp.allMeals();
+}
 
+// showing all meals in database 
+mealApp.allMeals = function() {
+    $('.cookedMeals').text('');
     for (const meals in  mealApp.answers) {
         // const everyMeal = meals;
         $('.cookedMeals').append(`
         <li class="${meals}">
-            <h3>${meals}</h3>
+            <h3>${meals}</h3><span></span>
             <div><img src="./assets/meals/${meals}.png" alt="${meals}"></img></div>
             <p>Ingridients needed to cook: ${mealApp.answers[meals]}</p>
         </li>
@@ -45,12 +51,15 @@ mealApp.displayChosen = () => {
         <li>
             <h3>${mealApp.chosenIngridients[i]}</h3>
             <div><img src="./assets/${mealApp.chosenIngridients[i]}.png" alt="${mealApp.chosenIngridients[i]}"></img></div>
+            <button id="remove" value="${mealApp.chosenIngridients[i]}">Remove</button>
         </li>
         `);
     }
 }
 
 // Check if something is cooked based on the chosen ingridients
+mealApp.howManyTimesCooked = null;
+
 mealApp.checkIfCooked = function() {
 
     for (const meals in  mealApp.answers) {
@@ -60,9 +69,11 @@ mealApp.checkIfCooked = function() {
         {
             mealApp.cookedMeals.push(meals);
             mealApp.chosenIngridients = [];
+            mealApp.howManyTimesCooked += 1;
             console.log("Cooked meals:", mealApp.cookedMeals);
 
-            $(`.cookedMeals .${meals}`).toggleClass('unlocked'); ////////
+            $(`.cookedMeals .${meals} span`).text(mealApp.howManyTimesCooked);
+            $(`.cookedMeals .${meals}`).addClass('unlocked'); ////////
             return `We made a ${meals}`;
         }
     }
@@ -105,11 +116,53 @@ $('ul').on('click', '#remove', function(){
 
 
 
-
+// show all recipe & UNLOCKED ones & how many times user cooked
 $('.cooked').on('click', function(event){
     event.preventDefault();
     $('.cookedMeals').toggleClass('cookedMealsShow');
+    $('.addNewRecipe').removeClass('addNewRecipeShow');
 });
+
+
+// add ingridients to database window
+$('.addNew').on('click', function(event){
+    event.preventDefault();
+    $('.addNewRecipe').toggleClass('addNewRecipeShow');
+    $('.cookedMeals').removeClass('cookedMealsShow');
+});
+
+
+// adding a new ingridient to database
+$('#addIngridient').on('click', function(event){
+    event.preventDefault();
+    console.log(this);
+
+    const ingridientToAdd = $(this).prev().val();
+    mealApp.allIngridients.push(ingridientToAdd.toLowerCase());
+    mealApp.availableIngridients();
+});
+
+
+// $('#addMoreIngridients').on('click', function(event){
+//     event.preventDefault();
+
+//     $('.moreIngridients').append(`
+//         <label for="ingridientForMeal" class="sr-only">Name</label>
+//         <input type="text" id="ingridientForMeal" class="name input-fields" name="name" placeholder="Ingridient #1" required>
+//     `);
+// });
+
+$('#addMeal').on('click', function(event){
+    event.preventDefault();
+
+    const newMeal = ($('#newMealName').val()).toLowerCase();
+    const ingridiendToAdd = $('#ingridientForMeal').val();
+    mealApp.answers[newMeal] = [];
+    mealApp.answers[newMeal].push(ingridiendToAdd.toLowerCase());
+    console.log(mealApp.answers);
+});
+
+
 
 // mealApp.startOver = function() {
     $('#toMain').on('click', function(event){
