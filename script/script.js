@@ -2,7 +2,7 @@ const mealApp = {};
 
 mealApp.chosenIngridients = [];
 
-mealApp.cookedMeals = [];
+mealApp.cookedMeals = {};
 
 mealApp.answers = {
     smoothie: ['banana', 'milk', 'pineapple'],
@@ -11,6 +11,11 @@ mealApp.answers = {
 
 mealApp.allIngridients = ['banana', 'milk', 'pineapple', 'avocado', 'orange'];
 
+mealApp.cookedMealsCounter = function() {
+    for (const meals in  mealApp.answers) {
+        mealApp.cookedMeals[meals] = 0;
+    }
+}
 
 // Filling DOM with available ingridients
 mealApp.availableIngridients = function() {
@@ -25,7 +30,8 @@ mealApp.availableIngridients = function() {
         `);
     }
 //            <button id="remove" value="${mealApp.allIngridients[i]}">Remove</button>
-    mealApp.allMeals();
+
+    mealApp.moreIng();
 }
 
 // showing all meals in database 
@@ -40,6 +46,9 @@ mealApp.allMeals = function() {
             <p>Ingridients needed to cook: ${mealApp.answers[meals]}</p>
         </li>
         `);
+
+        $(`.cookedMeals .${meals} span`).text(mealApp.cookedMeals[meals]);
+        $(`.cookedMeals .${meals}`).addClass('unlocked');
     }
 }
 
@@ -58,21 +67,21 @@ mealApp.displayChosen = () => {
 }
 
 // Check if something is cooked based on the chosen ingridients
-mealApp.howManyTimesCooked = null;
 
 mealApp.checkIfCooked = function() {
-
+    
     for (const meals in  mealApp.answers) {
-        // console.log(`${meals}: ${mealApp.answers[meals]}`);
-        
+        console.log(`${meals}: ${mealApp.answers[meals]}`);
+        console.log(typeof(meals));
+
         if (mealApp.chosenIngridients.sort().join(',') === mealApp.answers[meals].sort().join(','))
         {
-            mealApp.cookedMeals.push(meals);
+            mealApp.cookedMeals[meals] += 1;
             mealApp.chosenIngridients = [];
-            mealApp.howManyTimesCooked += 1;
+
             console.log("Cooked meals:", mealApp.cookedMeals);
 
-            $(`.cookedMeals .${meals} span`).text(mealApp.howManyTimesCooked);
+            $(`.cookedMeals .${meals} span`).text(mealApp.cookedMeals[meals]);
             $(`.cookedMeals .${meals}`).addClass('unlocked'); ////////
             return `We made a ${meals}`;
         }
@@ -124,7 +133,7 @@ $('.cooked').on('click', function(event){
 });
 
 
-// add ingridients to database window
+// show window with adding new ingr OR meals
 $('.addNew').on('click', function(event){
     event.preventDefault();
     $('.addNewRecipe').toggleClass('addNewRecipeShow');
@@ -138,28 +147,87 @@ $('#addIngridient').on('click', function(event){
     console.log(this);
 
     const ingridientToAdd = $(this).prev().val();
-    mealApp.allIngridients.push(ingridientToAdd.toLowerCase());
+
+    if (ingridientToAdd === '' || !isNaN(ingridientToAdd)) {
+        console.log('Error');
+    } else mealApp.allIngridients.push(ingridientToAdd.toLowerCase());
+
     mealApp.availableIngridients();
 });
 
 
-// $('#addMoreIngridients').on('click', function(event){
-//     event.preventDefault();
+mealApp.ingr = [];
 
-//     $('.moreIngridients').append(`
-//         <label for="ingridientForMeal" class="sr-only">Name</label>
-//         <input type="text" id="ingridientForMeal" class="name input-fields" name="name" placeholder="Ingridient #1" required>
-//     `);
-// });
-
+// add a new meal to database with its ingridients
 $('#addMeal').on('click', function(event){
     event.preventDefault();
 
-    const newMeal = ($('#newMealName').val()).toLowerCase();
-    const ingridiendToAdd = $('#ingridientForMeal').val();
-    mealApp.answers[newMeal] = [];
-    mealApp.answers[newMeal].push(ingridiendToAdd.toLowerCase());
-    console.log(mealApp.answers);
+    // name of new meal
+    const newMeal = ($('#newMealName').val()).toLowerCase().split(' ').join('');
+    console.log("New meal name:", newMeal);
+    console.log(typeof(newMeal));
+    console.log(typeof(parseInt(newMeal)));
+    console.log(isNaN(parseInt(newMeal)));
+
+
+    mealApp.ingr = [];
+    $('.ingr').each(function(){
+        console.log($(this).val());
+        const ingr = $(this).val();
+        console.log(typeof(parseInt(ingr)));
+
+        if (ingr === "") {
+            console.log('Error');
+            console.log(mealApp.ingr);
+        } else {
+            mealApp.ingr.push($(this).val());
+            console.log(mealApp.ingr);
+        }
+    });
+
+    if (newMeal === '' || !isNaN(parseInt(newMeal)) || mealApp.ingr.length === 0) {
+
+        console.log('Enter a valid name of the new meal');
+        console.log("updated menu:", mealApp.answers);
+    } else  
+        {
+            // how many ingridients
+            mealApp.answers[newMeal] = [];
+            mealApp.cookedMeals[newMeal] = 0;
+            const howMany = $('#howManyIng').val();
+
+            for(i=0; i < howMany; i++) {
+                const ingridiendToAdd = $(`#ingridient${i+1}`).val();
+                console.log("New ingridient:", ingridiendToAdd);
+                console.log(typeof(ingridiendToAdd));
+
+                mealApp.answers[newMeal].push(ingridiendToAdd.toLowerCase());
+                console.log("updated menu:", mealApp.answers);
+            }
+            mealApp.allMeals();
+        }
+
+});
+
+
+
+// adding more inputs for ingridients
+mealApp.moreIng = () => {
+    $('.moreIngridients').text('');
+    const howMany = $('#howManyIng').val();
+
+    for (i=0; i < howMany; i++) {
+        $('.moreIngridients').append(`
+        <label for="ingridient${i+1}" class="sr-only">Name</label>
+        <input type="text" id="ingridient${i+1}" class="name input-fields ingr" name="name" placeholder="Ingridient #${i+1}" required/>
+        `)
+    }
+}
+
+$('#howManyIng').on('change', function(event){
+    event.preventDefault();
+
+    mealApp.moreIng();
 });
 
 
@@ -184,6 +252,8 @@ mealApp.scroll = function(element) {
 
 mealApp.init = function() {
     mealApp.availableIngridients();
+    mealApp.cookedMealsCounter();
+    mealApp.allMeals();
     // mealApp.startOver();
 }
 

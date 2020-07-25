@@ -38,29 +38,28 @@
                     <form action="">
                         <fieldset>
                             <label for="name" class="sr-only">Name</label>
-                            <input type="text" id="name" class="name input-fields" name="name" placeholder="Name of ingridient" required>
+                            <input type="text" id="name" class="name input-fields" name="name" placeholder="Name of ingridient" required/>
 
+                            <!-- <input type="submit" id="addIngridient" value="Add ingridient to database"/> -->
                             <button id="addIngridient">Add ingridient to database</button>
                         </fieldset>
                     </form>
 
                     <form action="">
                         <fieldset>
-                                <label for="newMealName" class="sr-only">Name</label>
-                                <input type="text" id="newMealName" class="name input-fields" name="name" placeholder="Name of new meal" required>
+                                <label for="newMealName">Name of the meal</label>
+                                <input type="text" id="newMealName" class="name input-fields" name="name" placeholder="Name of new meal" required/>
 
-                                <div>
-                                    <label for="ingridientForMeal" class="sr-only">Name</label>
-                                    <input type="text" id="ingridientForMeal" class="name input-fields" name="name" placeholder="Ingridient #1" required>
-                                    <button id="addMoreIngridients">Add another ingridient</button>
-                                </div>
+                                <div></div>
+
+                                <label for="howManyIng">Add more ingridients</label>
+                                <input type="number" id="howManyIng" name="ingridients" step="1" value="1" min="1" required/>
                                 
                                 <div class="moreIngridients">
                                 </div>
 
-                                <div>
-                                    <button id="addMeal">Add new meal</button>
-                                </div>
+                                <!-- <input type="submit" id="addMeal" class="submit" value="Add new meal"/> -->
+                                <button id="addMeal">Add new meal</button>
                         </fieldset>
                     </form>
                 </div>
