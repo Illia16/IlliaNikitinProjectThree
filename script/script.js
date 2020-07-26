@@ -3,6 +3,7 @@ const mealApp = {};
 mealApp.chosenIngridients = [];
 
 mealApp.cookedMeals = {};
+mealApp.cookedMealsIfCooked = {};
 
 mealApp.answers = {
     smoothie: ['banana', 'milk', 'pineapple'],
@@ -38,17 +39,23 @@ mealApp.availableIngridients = function() {
 mealApp.allMeals = function() {
     $('.cookedMeals').text('');
     for (const meals in  mealApp.answers) {
-        // const everyMeal = meals;
-        $('.cookedMeals').append(`
-        <li class="${meals}">
-            <h3>${meals}</h3><span></span>
-            <div><img src="./assets/meals/${meals}.png" alt="${meals}"></img></div>
-            <p>Ingridients needed to cook: ${mealApp.answers[meals]}</p>
-        </li>
-        `);
-
-        $(`.cookedMeals .${meals} span`).text(mealApp.cookedMeals[meals]);
-        $(`.cookedMeals .${meals}`).addClass('unlocked');
+        if (mealApp.cookedMealsIfCooked[meals]) {
+            $('.cookedMeals').append(`
+            <li class="${meals} unlocked">
+                <h3>${meals}</h3><span>${mealApp.cookedMeals[meals]}</span>
+                <div><img src="./assets/meals/${meals}.png" alt="${meals}"></img></div>
+                <p>Ingridients needed to cook: ${mealApp.answers[meals]}</p>
+            </li>
+            `);
+        } else {
+            $('.cookedMeals').append(`
+            <li class="${meals}">
+                <h3>${meals}</h3><span></span>
+                <div><img src="./assets/meals/${meals}.png" alt="${meals}"></img></div>
+                <p>Ingridients needed to cook: ${mealApp.answers[meals]}</p>
+            </li>
+            `);
+        }
     }
 }
 
@@ -75,18 +82,20 @@ mealApp.checkIfCooked = function() {
         console.log(typeof(meals));
 
         if (mealApp.chosenIngridients.sort().join(',') === mealApp.answers[meals].sort().join(','))
-        {
+        {   
             mealApp.cookedMeals[meals] += 1;
+            mealApp.cookedMealsIfCooked[meals] = true;
             mealApp.chosenIngridients = [];
 
             console.log("Cooked meals:", mealApp.cookedMeals);
+            console.log("Cooked meals if cooked?:", mealApp.cookedMealsIfCooked);
 
             $(`.cookedMeals .${meals} span`).text(mealApp.cookedMeals[meals]);
             $(`.cookedMeals .${meals}`).addClass('unlocked'); ////////
-            return `We made a ${meals}`;
+            console.log(`We made a ${meals}`);
         }
     }
-    return `Nothing's cooked yet!`;
+    console.log(`Nothing's cooked yet!`);
 }
 
 
@@ -185,7 +194,7 @@ $('#addMeal').on('click', function(event){
         }
     });
 
-    if (newMeal === '' || !isNaN(parseInt(newMeal)) || mealApp.ingr.length === 0) {
+    if (newMeal === '' || !isNaN(parseInt(newMeal)) || mealApp.ingr.length === 0 || mealApp.answers.hasOwnProperty(newMeal)) {
 
         console.log('Enter a valid name of the new meal');
         console.log("updated menu:", mealApp.answers);
@@ -204,9 +213,9 @@ $('#addMeal').on('click', function(event){
                 mealApp.answers[newMeal].push(ingridiendToAdd.toLowerCase());
                 console.log("updated menu:", mealApp.answers);
             }
+
             mealApp.allMeals();
         }
-
 });
 
 
