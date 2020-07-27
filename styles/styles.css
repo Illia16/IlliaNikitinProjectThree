@@ -293,6 +293,8 @@ h2 {
 
 h3 {
   font-size: 3rem;
+  color: yellow;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
 }
 
 h1,
@@ -373,8 +375,8 @@ header .headerButton button:focus {
 .sectionTwo .wrapper {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: (minmax(20%, 1fr))[auto-fill];
-      grid-template-columns: repeat(auto-fill, minmax(20%, 1fr));
+  -ms-grid-columns: (minmax(275px, 1fr))[auto-fill];
+      grid-template-columns: repeat(auto-fill, minmax(275px, 1fr));
   -ms-grid-rows: 450px 1fr;
       grid-template-rows: 450px 1fr;
   -webkit-box-pack: justify;
@@ -386,14 +388,6 @@ header .headerButton button:focus {
 .sectionTwo .items {
   height: 450px;
   overflow: auto;
-  -ms-overflow-style: none;
-  /* IE and Edge */
-  scrollbar-width: none;
-  /* Firefox */
-}
-
-.sectionTwo .items .example::-webkit-scrollbar {
-  display: none;
 }
 
 .sectionTwo .table {
@@ -417,15 +411,16 @@ header .headerButton button:focus {
 .sectionTwo .cookedMeals {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: (200px)[auto-fit];
-      grid-template-columns: repeat(auto-fit, 200px);
+  -ms-grid-columns: (250px)[auto-fit];
+      grid-template-columns: repeat(auto-fit, 250px);
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
   grid-gap: 20px;
 }
 
-.sectionTwo .cookedMeals li {
+.sectionTwo .cookedMeals li,
+ul.ingridients li {
   display: -ms-grid;
   display: grid;
   -webkit-box-pack: center;
@@ -433,11 +428,11 @@ header .headerButton button:focus {
           justify-content: center;
   -ms-flex-line-pack: justify;
       align-content: space-between;
-  border: 2px solid blue;
-  -webkit-box-shadow: yellow 5px 5px;
-          box-shadow: yellow 5px 5px;
-  background: azure;
+  -webkit-box-shadow: darkcyan 5px 5px;
+          box-shadow: darkcyan 5px 5px;
   text-align: center;
+  background: rgba(202, 214, 195, 0.5);
+  padding: 5px;
 }
 
 ul.ingridients,
@@ -452,21 +447,6 @@ ul.chosenIngridients {
   grid-gap: 20px;
 }
 
-ul.ingridients li {
-  display: -ms-grid;
-  display: grid;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -ms-flex-line-pack: justify;
-      align-content: space-between;
-  border: 2px solid blue;
-  -webkit-box-shadow: yellow 5px 5px;
-          box-shadow: yellow 5px 5px;
-  background: azure;
-  text-align: center;
-}
-
 ul li div {
   text-align: center;
 }
@@ -475,10 +455,97 @@ ul li div {
   margin: 0 auto;
 }
 
-.addNewRecipe {
-  grid-column: 1 / -1;
+button {
+  border: 2px solid transparent;
+  background: #a2d416;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
 }
 
-.unlocked {
-  color: white;
+button:hover,
+button:focus {
+  border: 2px solid #a2d416;
+  background: none;
+}
+
+fieldset {
+  border: 0;
+}
+
+.addNewRecipe {
+  grid-column: 1 / -1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.addNewRecipe h3,
+form {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 0 100%;
+          flex: 1 0 100%;
+}
+
+.addNewRecipe fieldset {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.addNewRecipe fieldset input,
+.addNewRecipe fieldset button {
+  margin-top: 20px;
+  padding: 15px;
+}
+
+.newIngr input,
+.newIngr button,
+.newMeal .one input[type="text"],
+.newMeal .one button,
+.newMeal .two input[type="number"],
+.newMeal .two .moreIngridients,
+.newMeal .two .name {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 0 250px;
+          flex: 1 0 250px;
+}
+
+.moreIngridients {
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+.moreIngridients input[type="text"] {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+.two label {
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 0 250px;
+          flex: 1 0 250px;
+  text-align: center;
+}
+
+.newMeal div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 0 100%;
+          flex: 1 0 100%;
 }

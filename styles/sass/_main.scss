@@ -1,0 +1,174 @@
+//// Main ///////
+.sectionOne {
+    // Background is from unsplash.com made by Brooke Lark
+    background: url(../assets/sectionOneBackground.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    // height: 100vh;
+}
+
+.sectionOne .wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.sectionOne .wrapper > * {
+    margin-bottom: 30px;
+    align-self: flex-end;
+    width: 400px;
+}
+
+.sectionTwo {
+    // Background is from unsplash.com made by Jakub Kapusnak
+    background: url(../assets/tableBackground.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    // height: 100vh;
+    background-position: center;
+}
+
+.sectionTwo .wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(275px, 1fr));
+    grid-template-rows: 450px 1fr;
+    justify-content: space-between;
+    grid-gap: 125px 25px;
+}
+
+// ITEMS
+.sectionTwo .items {
+    height: 450px;
+    overflow: auto;
+}
+
+// TABLE
+.sectionTwo .table {
+    height: 450px;
+    overflow: auto;
+    grid-column: 2 / 4;
+}
+
+.sectionTwo .table .done{
+    text-align: center;
+    background: darkorange;
+}
+
+// COOKED
+.sectionTwo .cooked {
+    height: 450px;
+    overflow: auto;
+}
+
+.sectionTwo .cookedMeals {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 250px);
+    justify-content: center;
+    grid-gap: 20px;
+}
+
+.sectionTwo .cookedMeals li,
+ul.ingridients li {
+    display: grid;
+    justify-content: center;
+    align-content: space-between;
+    box-shadow: darkcyan 5px 5px;
+    text-align: center;
+    background:  rgba(202, 214, 195, 0.5);
+    padding: 5px;
+}
+
+ul.ingridients,
+ul.chosenIngridients {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 100px);
+    justify-content: center;
+    grid-gap: 20px;
+}
+
+
+ul li div {
+    text-align: center;
+}
+
+.ingridients button {
+    margin: 0 auto;
+}
+
+
+// Cooked
+// .unlocked {
+//     color: white;
+// }
+
+button {
+    border: 2px solid transparent;
+    background: #a2d416;
+    transition: all 0.5s;
+}
+
+button:hover,
+button:focus {
+    border: 2px solid #a2d416;
+    background: none;
+
+}
+
+
+//FORMS /////////////////////////////////
+fieldset {
+    border: 0;
+}
+
+.addNewRecipe {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.addNewRecipe h3,
+form {
+    flex: 1 0 100%;
+}
+
+.addNewRecipe fieldset {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.addNewRecipe fieldset input, 
+.addNewRecipe fieldset button {
+    margin-top: 20px;
+    padding: 15px;
+}
+
+.newIngr input,
+.newIngr button,
+.newMeal .one input[type="text"],
+.newMeal .one button, 
+.newMeal .two input[type="number"],
+.newMeal .two .moreIngridients,
+.newMeal .two .name {
+    flex: 1 0 250px;
+}
+
+.moreIngridients {
+    justify-content: space-evenly;
+}
+
+.moreIngridients input[type="text"] {
+    flex: 1;
+}
+
+.two label {
+    align-self: center;
+    flex: 1 0 250px;
+    text-align: center;
+}
+
+.newMeal div {
+    display: flex;
+    flex-wrap: wrap;
+    flex: 1 0 100%;
+}

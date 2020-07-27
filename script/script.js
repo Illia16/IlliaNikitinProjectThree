@@ -1,17 +1,18 @@
 const mealApp = {};
 
 mealApp.chosenIngridients = [];
-
 mealApp.cookedMeals = {};
 mealApp.cookedMealsIfCooked = {};
 
 mealApp.answers = {
+    taco: ['salad', 'bacon', 'olives', 'egg', 'tomato'],
     smoothie: ['banana', 'milk', 'pineapple'],
     orangeJuice: ['orange', 'orange', 'orange'],
 }
 
 mealApp.allIngridients = ['banana', 'milk', 'pineapple', 'avocado', 'orange'];
 
+// making sure that the counter of cooked meals is always right
 mealApp.cookedMealsCounter = function() {
     for (const meals in  mealApp.answers) {
         mealApp.cookedMeals[meals] = 0;
@@ -30,7 +31,6 @@ mealApp.availableIngridients = function() {
         </li>
         `);
     }
-//            <button id="remove" value="${mealApp.allIngridients[i]}">Remove</button>
 
     mealApp.moreIng();
 }
@@ -42,17 +42,17 @@ mealApp.allMeals = function() {
         if (mealApp.cookedMealsIfCooked[meals]) {
             $('.cookedMeals').append(`
             <li class="${meals} unlocked">
-                <p>${meals}</p><span>${mealApp.cookedMeals[meals]}</span>
+                <span>${mealApp.cookedMeals[meals]}</span><p>${meals}</p>
                 <div><img src="./assets/meals/${meals}.png" alt="${meals}"></img></div>
-                <p>Ingridients needed: ${mealApp.answers[meals]}</p>
+                <p>Ingridients needed: ${mealApp.answers[meals].join(', ')}</p>
             </li>
             `);
         } else {
             $('.cookedMeals').append(`
             <li class="${meals}">
-                <p>${meals}</p><span></span>
+                <span></span><p>${meals}</p>
                 <div><img src="./assets/meals/${meals}.png" alt="${meals}"></img></div>
-                <p>Ingridients needed: ${mealApp.answers[meals]}</p>
+                <p>Ingridients needed: ${mealApp.answers[meals].join(', ')}</p>
             </li>
             `);
         }
@@ -74,69 +74,47 @@ mealApp.displayChosen = () => {
 }
 
 // Check if something is cooked based on the chosen ingridients
-
 mealApp.checkIfCooked = function() {
     
     for (const meals in  mealApp.answers) {
-        console.log(`${meals}: ${mealApp.answers[meals]}`);
-        console.log(typeof(meals));
-
         if (mealApp.chosenIngridients.sort().join(',') === mealApp.answers[meals].sort().join(','))
         {   
             mealApp.cookedMeals[meals] += 1;
             mealApp.cookedMealsIfCooked[meals] = true;
             mealApp.chosenIngridients = [];
 
-            console.log("Cooked meals:", mealApp.cookedMeals);
-            console.log("Cooked meals if cooked?:", mealApp.cookedMealsIfCooked);
-
             $('.sectionTwo .table .done').text('').animate({ opacity: 1 });
+            $(`.cookedMeals .${meals} span`).text(`Made ${mealApp.cookedMeals[meals]} times`);
 
-
-            $(`.cookedMeals .${meals} span`).text(mealApp.cookedMeals[meals]);
-            $(`.cookedMeals .${meals}`).addClass('unlocked'); ////////
-            console.log(`We made a ${meals}`);
+            // $(`.cookedMeals .${meals}`).addClass('unlocked');
+            $(`.cookedMeals .${meals}`).css('box-shadow', 'gold 5px 5px');
             $('.sectionTwo .table .done').append(`We made ${meals}`).animate({ opacity: 0}, 1500);
         }
     }
-
 }
-
 
 // Adding ingridient we want
 $('ul').on('click', '#add', function(){
     const pickedIngridient = $(this).val();
     mealApp.chosenIngridients.push(pickedIngridient);
-    console.log(mealApp.chosenIngridients);
-
-    const result = mealApp.checkIfCooked();
-    console.log(result);
-
+    mealApp.checkIfCooked();
     mealApp.displayChosen();
 });
 
 // Removing ingridient we want
 $('ul').on('click', '#remove', function(){
     const toRemove = $(this).val();
-    console.log("What to remove:", toRemove);
-
     const toRemoveIndex = mealApp.chosenIngridients.indexOf(toRemove);
-    console.log("Index of the item to be removed:", toRemoveIndex);
 
     if (mealApp.chosenIngridients.length === 0) {
         console.log('Nothing\'s on the table!');
     } else if (toRemoveIndex === -1) {
         console.log(`${toRemove} is not on the table!`);
     } else mealApp.chosenIngridients.splice(toRemoveIndex, 1);
-    console.log("after removal:", mealApp.chosenIngridients);
 
-    const result = mealApp.checkIfCooked();
-    console.log(result);
-
+    mealApp.checkIfCooked();
     mealApp.displayChosen();
 });
-
-
 
 // show all recipe & UNLOCKED ones & how many times user cooked
 $('.cooked').on('click', function(event){
@@ -145,7 +123,6 @@ $('.cooked').on('click', function(event){
     $('.addNewRecipe').removeClass('addNewRecipeShow');
 });
 
-
 // show window with adding new ingr OR meals
 $('.addNew').on('click', function(event){
     event.preventDefault();
@@ -153,12 +130,9 @@ $('.addNew').on('click', function(event){
     $('.cookedMeals').removeClass('cookedMealsShow');
 });
 
-
 // adding a new ingridient to database
 $('#addIngridient').on('click', function(event){
     event.preventDefault();
-    console.log(this);
-
     const ingridientToAdd = $(this).prev().val();
 
     if (ingridientToAdd === '' || !isNaN(ingridientToAdd)) {
@@ -168,38 +142,29 @@ $('#addIngridient').on('click', function(event){
     mealApp.availableIngridients();
 });
 
-
+// creating an empty array to check if name of added meals is defined
 mealApp.ingr = [];
 
 // add a new meal to database with its ingridients
 $('#addMeal').on('click', function(event){
     event.preventDefault();
-
     // name of new meal
     const newMeal = ($('#newMealName').val()).toLowerCase().split(' ').join('');
-    console.log("New meal name:", newMeal);
-    console.log(typeof(newMeal));
-    console.log(typeof(parseInt(newMeal)));
-    console.log(isNaN(parseInt(newMeal)));
-
 
     mealApp.ingr = [];
+
     $('.ingr').each(function(){
-        console.log($(this).val());
         const ingr = $(this).val();
-        console.log(typeof(parseInt(ingr)));
 
         if (ingr === "") {
             console.log('Error');
             console.log(mealApp.ingr);
         } else {
             mealApp.ingr.push($(this).val());
-            console.log(mealApp.ingr);
         }
     });
 
     if (newMeal === '' || !isNaN(parseInt(newMeal)) || mealApp.ingr.length === 0 || mealApp.answers.hasOwnProperty(newMeal)) {
-
         console.log('Enter a valid name of the new meal');
         console.log("updated menu:", mealApp.answers);
     } else  
@@ -211,17 +176,12 @@ $('#addMeal').on('click', function(event){
 
             for(i=0; i < howMany; i++) {
                 const ingridiendToAdd = $(`#ingridient${i+1}`).val();
-                console.log("New ingridient:", ingridiendToAdd);
-                console.log(typeof(ingridiendToAdd));
-
                 mealApp.answers[newMeal].push(ingridiendToAdd.toLowerCase());
-                console.log("updated menu:", mealApp.answers);
             }
 
             mealApp.allMeals();
         }
 });
-
 
 
 // adding more inputs for ingridients
@@ -239,19 +199,13 @@ mealApp.moreIng = () => {
 
 $('#howManyIng').on('change', function(event){
     event.preventDefault();
-
     mealApp.moreIng();
 });
 
-
-
-// mealApp.startOver = function() {
     $('#toMain').on('click', function(event){
         event.preventDefault();
         mealApp.scroll('section');
     });
-//}
-
 
 //smooth scrool to come to a desired part of the page
 mealApp.scroll = function(element) {
@@ -262,12 +216,10 @@ mealApp.scroll = function(element) {
 	);
 };
 
-
 mealApp.init = function() {
     mealApp.availableIngridients();
     mealApp.cookedMealsCounter();
     mealApp.allMeals();
-    // mealApp.startOver();
 }
 
 //Document ready

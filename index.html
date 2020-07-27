@@ -30,6 +30,8 @@
                 <p>On the right side of the screen in the <em>Cooked meals</em> section, there's a list of cooked meals and information on what ingridients needed to cook certain meal. Once something is cooked, there's visual respesentation on the meal that was cooked as well as a counter on how many times it's been cooked.</p>
 
                 <p>Down below, there's <em>Add new ingridient(s) and meal</em> section where user can add any ingridients they want to the database. Also, there's a possibility of addding user's own meal with any amount of ingridients. The added ingridiens/meals are displayed dynamically once added.</p>
+
+                <p>For example, let's try making TACO. First, we gotta check on the right what ingredients do we need. Then, see if they are availble in the list of ingridients. If not, we need to add each ingridient using the form below. Once, they are all added, add the needed ingridients on the table. Once they're all there, our TACO is made.</p>
             </div>
         </section>
             
@@ -61,28 +63,30 @@
                 <div class="addNewRecipe">
                     <h3>Add new ingridient(s) and meal</h3>
                     <form action="">
-                        <fieldset>
+                        <fieldset class="newIngr">
                             <label for="name" class="sr-only">Name</label>
-                            <input type="text" id="name" class="name input-fields" name="name" placeholder="Name of ingridient" required/>
+                            <input type="text" id="name" placeholder="Name of ingridient (e.g. apple, potato, tomato)" required/>
 
                             <button id="addIngridient">Add ingridient to database</button>
                         </fieldset>
                     </form>
 
                     <form action="">
-                        <fieldset>
-                                <label for="newMealName">Name of the meal</label>
-                                <input type="text" id="newMealName" class="name input-fields" name="name" placeholder="Name of new meal" required/>
-
-                                <div></div>
-
-                                <label for="howManyIng">Add more ingridients</label>
-                                <input type="number" id="howManyIng" name="ingridients" step="1" value="1" min="1" required/>
-                                
-                                <div class="moreIngridients">
+                        <fieldset class="newMeal">
+                                <div class="one">
+                                    <label for="newMealName"></label>
+                                    <input type="text" id="newMealName" placeholder="Name of new meal" required/>
+                                    <button id="addMeal">Add new meal</button>
                                 </div>
 
-                                <button id="addMeal">Add new meal</button>
+                                <div class="two">
+                                    <label for="howManyIng">INGRIDIENTS</label>
+                                    <input type="number" id="howManyIng" step="1" value="1" min="1" required/>
+                                    
+                                </div>
+
+                                <div class="moreIngridients">
+                                </div>
                         </fieldset>
                     </form>
                 </div>
