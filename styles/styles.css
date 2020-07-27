@@ -244,6 +244,7 @@ html {
   max-width: 1280px;
   width: 90%;
   margin: 0 auto;
+  padding: 50px 0;
 }
 
 img {
@@ -265,15 +266,39 @@ ul, li, ol {
 
 body {
   font-size: 2rem;
+  line-height: 1.6;
+  font-family: 'Raleway', sans-serif;
+}
+
+h1,
+h2,
+h3 {
+  font-family: 'Source Serif Pro', serif;
+  text-transform: uppercase;
+  text-align: center;
 }
 
 h1 {
-  width: 50%;
-  -ms-grid-column-align: end;
-      justify-self: end;
+  -ms-grid-column-align: center;
+      justify-self: center;
+  font-size: 7.5rem;
+  color: yellow;
+  text-shadow: 5px 5px 3px black;
+}
+
+h2 {
+  font-size: 5rem;
+  font-weight: 400;
 }
 
 h3 {
+  font-size: 3rem;
+}
+
+h1,
+h2,
+h3,
+p {
   margin: 0;
 }
 
@@ -294,79 +319,164 @@ header .headerButton {
 }
 
 header .headerButton {
-  margin: 100px 0;
+  margin-bottom: 100px;
   -ms-grid-column-align: center;
       justify-self: center;
 }
 
-main {
-  height: 100vh;
+header .headerButton button {
+  background: transparent;
+  border: transparent;
+  font-size: 4rem;
+  color: yellow;
+  text-shadow: 5px 5px 3px black;
+}
+
+header .headerButton button:hover,
+header .headerButton button:focus {
+  scale: 1.5;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.sectionOne {
+  background: url(../assets/sectionOneBackground.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.sectionOne .wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.sectionOne .wrapper > * {
+  margin-bottom: 30px;
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+  width: 400px;
+}
+
+.sectionTwo {
+  background: url(../assets/tableBackground.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.sectionTwo .wrapper {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (minmax(20%, 1fr))[auto-fill];
+      grid-template-columns: repeat(auto-fill, minmax(20%, 1fr));
+  -ms-grid-rows: 450px 1fr;
+      grid-template-rows: 450px 1fr;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  grid-gap: 125px 25px;
+}
+
+.sectionTwo .items {
+  height: 450px;
+  overflow: auto;
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+.sectionTwo .items .example::-webkit-scrollbar {
+  display: none;
+}
+
+.sectionTwo .table {
+  height: 450px;
+  overflow: auto;
+  -ms-grid-column: 2;
+  -ms-grid-column-span: 2;
+  grid-column: 2 / 4;
+}
+
+.sectionTwo .table .done {
+  text-align: center;
+  background: darkorange;
+}
+
+.sectionTwo .cooked {
+  height: 450px;
+  overflow: auto;
+}
+
+.sectionTwo .cookedMeals {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (200px)[auto-fit];
+      grid-template-columns: repeat(auto-fit, 200px);
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  grid-gap: 20px;
+}
+
+.sectionTwo .cookedMeals li {
+  display: -ms-grid;
+  display: grid;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-line-pack: justify;
+      align-content: space-between;
+  border: 2px solid blue;
+  -webkit-box-shadow: yellow 5px 5px;
+          box-shadow: yellow 5px 5px;
+  background: azure;
+  text-align: center;
 }
 
 ul.ingridients,
-ul.chosenIngridients,
-ul.cookedMeals {
+ul.chosenIngridients {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: (minmax(100px, 1fr))[auto-fit];
-      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  -ms-grid-columns: (100px)[auto-fit];
+      grid-template-columns: repeat(auto-fit, 100px);
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   grid-gap: 20px;
 }
 
 ul.ingridients li {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  display: -ms-grid;
+  display: grid;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-}
-
-ul.ingridients li > * {
-  margin-top: 20px;
+  -ms-flex-line-pack: justify;
+      align-content: space-between;
+  border: 2px solid blue;
+  -webkit-box-shadow: yellow 5px 5px;
+          box-shadow: yellow 5px 5px;
+  background: azure;
+  text-align: center;
 }
 
 ul li div {
-  width: 100%;
+  text-align: center;
 }
 
-.cooked,
-.addNew {
-  position: fixed;
-  right: 0;
-  z-index: 10;
+.ingridients button {
+  margin: 0 auto;
 }
 
-.cooked {
-  top: 50%;
-}
-
-.addNew {
-  top: 60%;
-}
-
-ul.cookedMeals,
 .addNewRecipe {
-  background: goldenrod;
-  position: fixed;
-  z-index: 5;
-  width: 80%;
-  left: -200%;
-  top: 10%;
-  bottom: 10%;
-  margin: 0;
-  padding: 40px;
-  overflow-y: scroll;
-}
-
-ul.cookedMealsShow {
-  left: 10%;
-}
-
-.addNewRecipeShow {
-  left: 10%;
+  grid-column: 1 / -1;
 }
 
 .unlocked {

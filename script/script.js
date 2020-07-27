@@ -24,7 +24,7 @@ mealApp.availableIngridients = function() {
     for (i=0; i < mealApp.allIngridients.length; i++) {
         $('.ingridients').append(`
         <li>
-            <h3>${mealApp.allIngridients[i]}</h3>
+            <p>${mealApp.allIngridients[i]}</p>
             <div><img src="./assets/${mealApp.allIngridients[i]}.png" alt="${mealApp.allIngridients[i]}"></img></div>
             <button id="add" value="${mealApp.allIngridients[i]}">Add</button>
         </li>
@@ -42,17 +42,17 @@ mealApp.allMeals = function() {
         if (mealApp.cookedMealsIfCooked[meals]) {
             $('.cookedMeals').append(`
             <li class="${meals} unlocked">
-                <h3>${meals}</h3><span>${mealApp.cookedMeals[meals]}</span>
+                <p>${meals}</p><span>${mealApp.cookedMeals[meals]}</span>
                 <div><img src="./assets/meals/${meals}.png" alt="${meals}"></img></div>
-                <p>Ingridients needed to cook: ${mealApp.answers[meals]}</p>
+                <p>Ingridients needed: ${mealApp.answers[meals]}</p>
             </li>
             `);
         } else {
             $('.cookedMeals').append(`
             <li class="${meals}">
-                <h3>${meals}</h3><span></span>
+                <p>${meals}</p><span></span>
                 <div><img src="./assets/meals/${meals}.png" alt="${meals}"></img></div>
-                <p>Ingridients needed to cook: ${mealApp.answers[meals]}</p>
+                <p>Ingridients needed: ${mealApp.answers[meals]}</p>
             </li>
             `);
         }
@@ -65,7 +65,7 @@ mealApp.displayChosen = () => {
     for (i=0; i < mealApp.chosenIngridients.length; i++) {
         $('.chosenIngridients').append(`
         <li>
-            <h3>${mealApp.chosenIngridients[i]}</h3>
+            <p>${mealApp.chosenIngridients[i]}</p>
             <div><img src="./assets/${mealApp.chosenIngridients[i]}.png" alt="${mealApp.chosenIngridients[i]}"></img></div>
             <button id="remove" value="${mealApp.chosenIngridients[i]}">Remove</button>
         </li>
@@ -90,12 +90,16 @@ mealApp.checkIfCooked = function() {
             console.log("Cooked meals:", mealApp.cookedMeals);
             console.log("Cooked meals if cooked?:", mealApp.cookedMealsIfCooked);
 
+            $('.sectionTwo .table .done').text('').animate({ opacity: 1 });
+
+
             $(`.cookedMeals .${meals} span`).text(mealApp.cookedMeals[meals]);
             $(`.cookedMeals .${meals}`).addClass('unlocked'); ////////
             console.log(`We made a ${meals}`);
+            $('.sectionTwo .table .done').append(`We made ${meals}`).animate({ opacity: 0}, 1500);
         }
     }
-    console.log(`Nothing's cooked yet!`);
+
 }
 
 
