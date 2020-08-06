@@ -15,8 +15,7 @@ h3 {
 h1 { 
     justify-self: center;
     font-size: 7.5rem;
-    color: yellow;
-    text-shadow: 5px 5px 3px rgba(0,0,0,1);
+    opacity: .85;
 }
 
 h2 {
@@ -26,8 +25,7 @@ h2 {
 
 h3 {
     font-size: 3rem;
-    color: yellow;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+    color: #a2d416;
 }
 
 h1,
@@ -42,7 +40,7 @@ header {
     background: url(../assets/headerBackground.jpg);
     background-size: cover;
     background-repeat: no-repeat;
-    height: 100vh;
+    min-height: 100vh;
 
     display: grid;
 }
@@ -57,12 +55,16 @@ header .headerButton {
     justify-self: center;
 }
 
+h1,
+header button {
+    color: rgb(255, 255, 255);
+    text-shadow: 5px 5px 3px rgb(0, 0, 0);
+}
+
 header .headerButton button {
     background: transparent;
     border: transparent;
-    font-size: 4rem;
-    color: yellow;
-    text-shadow: 5px 5px 3px rgba(0,0,0,1);
+    font-size: 5rem;
 }
 
 header .headerButton button:hover,
@@ -71,10 +73,36 @@ header .headerButton button:focus {
     transition: all 0.3s;
 }
 
+::placeholder {
+    opacity: 1;
+}
+
 // Footer
 
 footer {
     background: #a2d416;
-    padding: 5px;
     text-align: center;
+    font-size: 3rem;
+    display: flex;
+    justify-content: center;
+}
+
+footer > * {
+    padding: 10px;
+    transition: all 0.3s;
+}
+
+footer .github {
+    color: #333;
+}
+
+footer .linkedin {
+    color: #0e76a8
+}
+
+footer .github:hover,
+footer .github:focus,
+footer .linkedin:hover,
+footer .linkedin:focus {
+    transform: scale(1.2);
 }

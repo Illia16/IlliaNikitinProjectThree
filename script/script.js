@@ -25,6 +25,7 @@ mealApp.availableIngridients = function() {
     for (i=0; i < mealApp.allIngridients.length; i++) {
         $('.ingridients').append(`
         <li>
+            <button id="removeIng" class="closeWindow" value="${mealApp.allIngridients[i]}"><i class="fas fa-times"></i></button>
             <p>${mealApp.allIngridients[i]}</p>
             <div><img src="./assets/${mealApp.allIngridients[i]}.png" alt="${mealApp.allIngridients[i]}"></img></div>
             <button id="add" value="${mealApp.allIngridients[i]}">Add</button>
@@ -93,7 +94,7 @@ mealApp.checkIfCooked = function() {
     }
 }
 
-// Adding ingridient we want
+// Adding ingridient we want to the table
 $('ul').on('click', '#add', function(){
     const pickedIngridient = $(this).val();
     mealApp.chosenIngridients.push(pickedIngridient);
@@ -101,7 +102,14 @@ $('ul').on('click', '#add', function(){
     mealApp.displayChosen();
 });
 
-// Removing ingridient we want
+// Removing ingridient we want FROM DATABASE
+$('ul').on('click', '#removeIng', function(){
+    const ingToRemove = $(this).val();
+    mealApp.allIngridients.splice( $.inArray(ingToRemove, mealApp.allIngridients), 1 );
+    $(this).parent().remove();
+});
+
+// Removing ingridient we want FROM THE TABLE
 $('ul').on('click', '#remove', function(){
     const toRemove = $(this).val();
     const toRemoveIndex = mealApp.chosenIngridients.indexOf(toRemove);
@@ -137,8 +145,10 @@ $('#addIngridient').on('click', function(event){
 
     if (ingridientToAdd === '' || !isNaN(ingridientToAdd)) {
         console.log('Error');
-    } else mealApp.allIngridients.push(ingridientToAdd.toLowerCase());
-
+    } else {
+        $(this).prev().val('');
+        mealApp.allIngridients.push(ingridientToAdd.toLowerCase());
+    }
     mealApp.availableIngridients();
 });
 
@@ -192,14 +202,22 @@ mealApp.moreIng = () => {
     for (i=0; i < howMany; i++) {
         $('.moreIngridients').append(`
         <label for="ingridient${i+1}" class="sr-only">Name</label>
-        <input type="text" id="ingridient${i+1}" class="name input-fields ingr" name="name" placeholder="Ingridient #${i+1}" required/>
+        <input type="text" id="ingridient${i+1}" class="name input-fields ingr" name="name" placeholder="Ingridient #${i+1}"/>
         `)
     }
 }
 
 $('#howManyIng').on('change', function(event){
     event.preventDefault();
-    mealApp.moreIng();
+    const howMany = $('#howManyIng').val();
+
+    if (howMany <= 15) {
+        $('#howManyIng').attr('placeholder',`Meal will have ${howMany} ingridients`);
+        mealApp.moreIng();
+    } else  {
+        $('#howManyIng').val('');
+        $('#howManyIng').attr('placeholder','Can\'t be that many ingridients!');
+    }
 });
 
     $('#toMain').on('click', function(event){

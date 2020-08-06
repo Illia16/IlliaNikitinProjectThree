@@ -14,7 +14,7 @@
 
 <body>
     <header>
-            <h1>Visual meal generator</h1>
+            <h1>Meal generator</h1>
 
             <div class="headerButton">
                 <button id="toMain"><i class="fas fa-angle-double-down"></i></button>
@@ -25,13 +25,7 @@
         <section class="sectionOne">
             <div class="wrapper">
                 <h2>How to use?</h2>
-                <p>The visual meal generator allows user to craft meals by adding food items from the ingridient section to the table <em>by clicking button "add"</em>. Once something is made, there's a notification about what was cooked.</p>
-
-                <p>On the right side of the screen in the <em>Cooked meals</em> section, there's a list of cooked meals and information on what ingridients needed to cook certain meal. Once something is cooked, there's visual respesentation on the meal that was cooked as well as a counter on how many times it's been cooked.</p>
-
-                <p>Down below, there's <em>Add new ingridient(s) and meal</em> section where user can add any ingridients they want to the database. Also, there's a possibility of addding user's own meal with any amount of ingridients. The added ingridiens/meals are displayed dynamically once added.</p>
-
-                <p>For example, let's try making TACO. First, we gotta check on the right what ingredients do we need. Then, see if they are availble in the list of ingridients. If not, we need to add each ingridient using the form below. Once, they are all added, add the needed ingridients on the table. Once they're all there, our TACO is made.</p>
+                <p>The visual meal generator lets the user to craft any meals of their choice, add/remove new ingridients as well as new meals.Ingridients are shown on the left side, while cooked meals on the right. Right underneath them there's a form where meals/ingridiends can be added.</p>
             </div>
         </section>
             
@@ -60,43 +54,47 @@
                     </ul>
                 </div>
                 
+                
+
+            </div>
+        </section>
+
+        <section>
+            <div class="wrapper">
                 <div class="addNewRecipe">
-                    <h3>Add new ingridient(s) and meal</h3>
                     <form action="">
+                        <h3>Add new ingridient</h3>
                         <fieldset class="newIngr">
                             <label for="name" class="sr-only">Name</label>
-                            <input type="text" id="name" placeholder="Name of ingridient (e.g. apple, potato, tomato)" required/>
+                            <input type="text" id="name" placeholder="Name of ingridient (e.g. apple, potato, tomato)"/>
 
                             <button id="addIngridient">Add ingridient to database</button>
                         </fieldset>
                     </form>
 
                     <form action="">
+                        <h3>Add new meal</h3>
                         <fieldset class="newMeal">
-                                <div class="one">
-                                    <label for="newMealName"></label>
-                                    <input type="text" id="newMealName" placeholder="Name of new meal" required/>
-                                    <button id="addMeal">Add new meal</button>
-                                </div>
+                                    <label for="newMealName" class="sr-only"></label>
+                                    <input type="text" id="newMealName" placeholder="Name of new meal"/>
 
-                                <div class="two">
-                                    <label for="howManyIng">INGRIDIENTS</label>
-                                    <input type="number" id="howManyIng" step="1" value="1" min="1" required/>
-                                    
-                                </div>
+                                    <label for="howManyIng">NUMBER OF INGRIDIENTS AND THEIR NAMES</label>
+                                    <input type="number" id="howManyIng" step="1" value="1" min="1" max="15"/>
 
                                 <div class="moreIngridients">
                                 </div>
+
+                                <button id="addMeal">Add new meal</button>
                         </fieldset>
                     </form>
                 </div>
-
             </div>
         </section>
     </main>
-
     <footer>
-        <p>Copyright 2020</p>
+        <p>2020 Made by Illia Nikitin</p> 
+        <a href="https://github.com/Illia16" class="github" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/illia-nikitin-a4a637122/" class="linkedin" target="_blank"><i class="fab fa-linkedin"></i></a>
     </footer>
 
     <script src='https://code.jquery.com/jquery-3.4.0.min.js' integrity='sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=' crossorigin='anonymous'></script>
