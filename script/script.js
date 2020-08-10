@@ -1,15 +1,22 @@
 const mealApp = {};
 
+// ingridients that are on the table
 mealApp.chosenIngridients = [];
+
+// meals that have been cooked
 mealApp.cookedMeals = {};
+
+// check if a certain meal/drink was cooked AT LEAST ONCE(True/False)
 mealApp.cookedMealsIfCooked = {};
 
+// all recipes
 mealApp.answers = {
     taco: ['salad', 'bacon', 'olives', 'egg', 'tomato'],
     smoothie: ['banana', 'milk', 'pineapple'],
     orangeJuice: ['orange', 'orange', 'orange'],
 }
 
+// all ingridients
 mealApp.allIngridients = ['banana', 'milk', 'pineapple', 'avocado', 'orange'];
 
 // making sure that the counter of cooked meals is always right
@@ -84,12 +91,11 @@ mealApp.checkIfCooked = function() {
             mealApp.cookedMealsIfCooked[meals] = true;
             mealApp.chosenIngridients = [];
 
-            $('.sectionTwo .table .done').text('').animate({ opacity: 1 });
+            $('.letsCook .table .done').text('').animate({ opacity: 1 });
             $(`.cookedMeals .${meals} span`).text(`Made ${mealApp.cookedMeals[meals]} times`);
 
-            // $(`.cookedMeals .${meals}`).addClass('unlocked');
             $(`.cookedMeals .${meals}`).css('box-shadow', 'gold 5px 5px');
-            $('.sectionTwo .table .done').append(`We made ${meals}`).animate({ opacity: 0}, 1500);
+            $('.letsCook .table .done').append(`We made ${meals}`).animate({ opacity: 0}, 750);
         }
     }
 }
@@ -122,20 +128,6 @@ $('ul').on('click', '#remove', function(){
 
     mealApp.checkIfCooked();
     mealApp.displayChosen();
-});
-
-// show all recipe & UNLOCKED ones & how many times user cooked
-$('.cooked').on('click', function(event){
-    event.preventDefault();
-    $('.cookedMeals').toggleClass('cookedMealsShow');
-    $('.addNewRecipe').removeClass('addNewRecipeShow');
-});
-
-// show window with adding new ingr OR meals
-$('.addNew').on('click', function(event){
-    event.preventDefault();
-    $('.addNewRecipe').toggleClass('addNewRecipeShow');
-    $('.cookedMeals').removeClass('cookedMealsShow');
 });
 
 // adding a new ingridient to database

@@ -267,13 +267,14 @@ ul, li, ol {
 body {
   font-size: 2rem;
   line-height: 1.6;
-  font-family: 'Raleway', sans-serif;
+  font-weight: 400;
+  font-family: 'Nunito Sans', sans-serif;
 }
 
 h1,
 h2,
 h3 {
-  font-family: 'Source Serif Pro', serif;
+  font-family: 'Oswald', sans-serif;
   text-transform: uppercase;
   text-align: center;
 }
@@ -291,8 +292,9 @@ h2 {
 }
 
 h3 {
-  font-size: 3rem;
-  color: #a2d416;
+  font-size: 3.5rem;
+  padding: 20px 0;
+  color: #ffffff;
 }
 
 h1,
@@ -311,7 +313,7 @@ header {
   display: grid;
 }
 
-header h1,
+h1,
 header .headerButton {
   -ms-flex-item-align: end;
       -ms-grid-row-align: end;
@@ -326,8 +328,8 @@ header .headerButton {
 
 h1,
 header button {
-  color: white;
-  text-shadow: 5px 5px 3px black;
+  color: black;
+  text-shadow: 5px 5px 3px white;
 }
 
 header .headerButton button {
@@ -360,9 +362,10 @@ header .headerButton button:focus {
 }
 
 footer {
-  background: #a2d416;
+  background: #000;
+  color: #ffffff;
   text-align: center;
-  font-size: 3rem;
+  font-size: 2rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -372,13 +375,13 @@ footer {
 }
 
 footer > * {
-  padding: 10px;
+  padding: 0 10px;
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
 }
 
 footer .github {
-  color: #333;
+  color: white;
 }
 
 footer .linkedin {
@@ -393,7 +396,7 @@ footer .linkedin:focus {
           transform: scale(1.2);
 }
 
-.sectionOne {
+.howToUse {
   background: url(../assets/sectionOneBackground.jpg);
   background-size: cover;
   background-repeat: no-repeat;
@@ -401,7 +404,7 @@ footer .linkedin:focus {
   min-height: 100vh;
 }
 
-.sectionOne .wrapper {
+.howToUse .wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -415,7 +418,7 @@ footer .linkedin:focus {
           justify-content: center;
 }
 
-.sectionOne .wrapper > * {
+.howToUse .wrapper > * {
   margin-bottom: 30px;
   -ms-flex-item-align: end;
       align-self: flex-end;
@@ -423,19 +426,20 @@ footer .linkedin:focus {
   text-align: left;
 }
 
-.sectionTwo {
+.letsCook {
   background: url(../assets/tableBackground.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  background-attachment: fixed;
 }
 
-.sectionTwo h3 {
+.letsCook h3 {
   -webkit-text-stroke: 0.7px black;
   text-shadow: 2px 2px 3px black;
 }
 
-.sectionTwo .wrapper {
+.letsCook .wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -461,7 +465,7 @@ footer .linkedin:focus {
   padding: 15px;
 }
 
-.sectionTwo .table {
+.letsCook .table {
   -webkit-box-ordinal-group: 3;
       -ms-flex-order: 2;
           order: 2;
@@ -470,12 +474,14 @@ footer .linkedin:focus {
           flex: 1 0 100%;
 }
 
-.sectionTwo .table .done {
+.letsCook .table .done {
   text-align: center;
   background: darkorange;
+  width: 250px;
+  margin: 0 auto;
 }
 
-.sectionTwo .cookedMeals {
+.letsCook .cookedMeals {
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: (200px)[auto-fit];
@@ -483,10 +489,12 @@ footer .linkedin:focus {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  -ms-flex-line-pack: start;
+      align-content: flex-start;
   grid-gap: 20px;
 }
 
-.sectionTwo .cookedMeals li,
+.letsCook .cookedMeals li,
 ul.ingridients li {
   display: -ms-grid;
   display: grid;
@@ -503,9 +511,13 @@ ul.ingridients li {
 }
 
 ul.ingridients,
-ul.chosenIngridients,
-.cookedMeals {
-  height: 450px;
+ul.cookedMeals {
+  height: 425px;
+  overflow: auto;
+}
+
+ul.chosenIngridients {
+  height: 200px;
   overflow: auto;
 }
 
@@ -534,20 +546,22 @@ ul li div {
 
 button {
   border: 2px solid transparent;
-  background: #a2d416;
+  background: black;
+  color: white;
   -webkit-transition: all 0.5s;
   transition: all 0.5s;
 }
 
 button:hover,
 button:focus {
-  border: 2px solid #a2d416;
+  border: 2px solid black;
+  color: black;
   background: none;
 }
 
 .closeWindow {
   font-size: 2.5rem;
-  color: #a2d416;
+  color: #000;
   background: transparent;
   -webkit-transition: all 0.5s;
   transition: all 0.5s;
@@ -561,12 +575,16 @@ button:focus {
   border: 2px solid transparent;
 }
 
+.addNewStuff h3 {
+  color: #000;
+}
+
 fieldset {
   border: 0;
   padding: 0;
 }
 
-.addNewRecipe {
+.addNewStuffRecipe {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -586,8 +604,8 @@ form h3 {
   padding: 40px 0;
 }
 
-.addNewRecipe fieldset input,
-.addNewRecipe fieldset button {
+.addNewStuffRecipe fieldset input,
+.addNewStuffRecipe fieldset button {
   padding: 15px;
 }
 
@@ -601,8 +619,7 @@ form h3 {
 
 input[type="text"],
 input[type="number"] {
-  border: none;
-  border: transparent 2px solid;
+  border: black 2px solid;
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
 }
@@ -611,7 +628,8 @@ input[type="text"]:hover,
 input[type="text"]:focus,
 input[type="number"]:hover,
 input[type="number"]:focus {
-  border: #a2d416 2px solid;
+  border: transparent 2px solid;
+  border-bottom: black 2px solid;
 }
 
 .moreIngridients {
@@ -623,12 +641,21 @@ input[type="number"]:focus {
   grid-column: 1 / -1;
 }
 
+.newMeal label {
+  margin: 0 10px 30px;
+}
+
 .newMeal input[type="text"],
-.newMeal label,
+.newMeal label {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 0 280px;
+          flex: 1 0 280px;
+}
+
 .newMeal input[type="number"] {
   -webkit-box-flex: 1;
-      -ms-flex: 1 0 calc(100%/3);
-          flex: 1 0 calc(100%/3);
+      -ms-flex: 1;
+          flex: 1;
 }
 
 .newMeal > * {

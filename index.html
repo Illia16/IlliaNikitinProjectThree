@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <script src="https://kit.fontawesome.com/7daad3ad0b.js" crossorigin="anonymous"></script>
-
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,400;0,700;1,400&family=Source+Serif+Pro:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital@0;1&family=Oswald&display=swap" rel="stylesheet"> 
 
     <link rel="stylesheet" href="./styles/styles.css">
     <title>Meal generator</title>
@@ -22,53 +21,47 @@
     </header>
 
     <main>
-        <section class="sectionOne">
+        <section class="howToUse">
             <div class="wrapper">
                 <h2>How to use?</h2>
-                <p>The visual meal generator lets the user to craft any meals of their choice, add/remove new ingridients as well as new meals.Ingridients are shown on the left side, while cooked meals on the right. Right underneath them there's a form where meals/ingridiends can be added.</p>
+                <p>The visual meal generator lets the user to craft any meals of their choice, add/remove new ingridients as well as new meals. Ingridients are shown on the left side, while recipes on the right. Right underneath them there's table where ingridients get added. Beneath the table, there is a form where recipes/ingridiends can be added.</p>
             </div>
         </section>
             
-        <section class="sectionTwo">
+        <section class="letsCook">
             <div class="wrapper">
                 
                 <div class="items">
                     <h3>Ingridients</h3>
-
                     <ul class="ingridients">
                     </ul>
                 </div>
-
+                
                 <div class="table">
                     <h3>Table</h3>
                     <p class="done"></p>
-
                     <ul class="chosenIngridients">
                     </ul>
                 </div>
                 
                 <div class="cooked">
-                    <h3>Cooked meals</h3>
-
+                    <h3>Recipes</h3>
                     <ul class="cookedMeals">
                     </ul>
                 </div>
-                
-                
-
             </div>
         </section>
 
-        <section>
+        <section class="addNewStuff">
             <div class="wrapper">
-                <div class="addNewRecipe">
+                <div class="addNewStuffRecipe">
                     <form action="">
                         <h3>Add new ingridient</h3>
                         <fieldset class="newIngr">
                             <label for="name" class="sr-only">Name</label>
                             <input type="text" id="name" placeholder="Name of ingridient (e.g. apple, potato, tomato)"/>
 
-                            <button id="addIngridient">Add ingridient to database</button>
+                            <button id="addIngridient">ADD INGRIDIENT TO DATABASE</button>
                         </fieldset>
                     </form>
 
@@ -76,7 +69,7 @@
                         <h3>Add new meal</h3>
                         <fieldset class="newMeal">
                                     <label for="newMealName" class="sr-only"></label>
-                                    <input type="text" id="newMealName" placeholder="Name of new meal"/>
+                                    <input type="text" id="newMealName" placeholder="Name of new recipe"/>
 
                                     <label for="howManyIng">NUMBER OF INGRIDIENTS AND THEIR NAMES</label>
                                     <input type="number" id="howManyIng" step="1" value="1" min="1" max="15"/>
@@ -84,13 +77,14 @@
                                 <div class="moreIngridients">
                                 </div>
 
-                                <button id="addMeal">Add new meal</button>
+                                <button id="addMeal">ADD NEW RECIPE</button>
                         </fieldset>
                     </form>
                 </div>
             </div>
         </section>
     </main>
+    
     <footer>
         <p>2020 Made by Illia Nikitin</p> 
         <a href="https://github.com/Illia16" class="github" target="_blank"><i class="fab fa-github"></i></a>

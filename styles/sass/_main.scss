@@ -1,5 +1,5 @@
 //// Main ///////
-.sectionOne {
+.howToUse {
     // Background is from unsplash.com made by Brooke Lark
     background: url(../assets/sectionOneBackground.jpg);
     background-size: cover;
@@ -8,34 +8,37 @@
     min-height: 100vh;
 }
 
-.sectionOne .wrapper {
+.howToUse .wrapper {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
     justify-content: center;
 }
 
-.sectionOne .wrapper > * {
+.howToUse .wrapper > * {
     margin-bottom: 30px;
     align-self: flex-end;
     width: 400px;
     text-align: left;
 }
 
-.sectionTwo {
+// SECTION TWO ///////////////////////////////////////////////////////
+
+.letsCook {
     // Background is from unsplash.com made by Jakub Kapusnak
     background: url(../assets/tableBackground.jpg);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+    background-attachment: fixed;
 }
 
-.sectionTwo h3 {
+.letsCook h3 {
     -webkit-text-stroke: 0.7px black;
     text-shadow: 2px 2px 3px rgba(0, 0, 0, 1);
 }
 
-.sectionTwo .wrapper {
+.letsCook .wrapper {
     display: flex;
     flex-wrap: wrap;
 
@@ -57,25 +60,28 @@
 }
 
 // TABLE
-.sectionTwo .table {
+.letsCook .table {
     order: 2;
     flex: 1 0 100%;
 }
 
-.sectionTwo .table .done {
+.letsCook .table .done {
     text-align: center;
     background: darkorange;
+    width: 250px;
+    margin: 0 auto;
 }
 
 // COOKED
-.sectionTwo .cookedMeals {
+.letsCook .cookedMeals {
     display: grid;
     grid-template-columns: repeat(auto-fit, 200px);
     justify-content: center;
+    align-content: flex-start;
     grid-gap: 20px;
 }
 
-.sectionTwo .cookedMeals li,
+.letsCook .cookedMeals li,
 ul.ingridients li {
     display: grid;
     justify-content: center;
@@ -87,11 +93,16 @@ ul.ingridients li {
 }
 
 ul.ingridients,
-ul.chosenIngridients,
-.cookedMeals {
-    height: 450px;
+ul.cookedMeals {
+    height: 425px;
     overflow: auto;
 }
+
+ul.chosenIngridients {
+    height: 200px;
+    overflow: auto;
+}
+
 
 ul.ingridients,
 ul.chosenIngridients {
@@ -113,26 +124,23 @@ ul li div {
 }
 
 
-// Cooked
-// .unlocked {
-//     color: white;
-// }
-
 button {
     border: 2px solid transparent;
-    background: #a2d416;
+    background: black;
+    color: white;
     transition: all 0.5s;
 }
 
 button:hover,
 button:focus {
-    border: 2px solid #a2d416;
+    border: 2px solid black;
+    color: black;
     background: none;
 }
 
 .closeWindow {
     font-size: 2.5rem;
-    color: #a2d416;
+    color: #000;
     background: transparent;
     transition: all 0.5s;
 }
@@ -146,12 +154,17 @@ button:focus {
 
 
 //FORMS /////////////////////////////////
+
+.addNewStuff h3 {
+    color: #000;
+}
+
 fieldset {
     border: 0;
     padding: 0;
 }
 
-.addNewRecipe {
+.addNewStuffRecipe {
     display: flex;
     flex-wrap: wrap;
 }
@@ -166,8 +179,8 @@ form h3 {
     padding: 40px 0;
 }
 
-.addNewRecipe fieldset input, 
-.addNewRecipe fieldset button {
+.addNewStuffRecipe fieldset input, 
+.addNewStuffRecipe fieldset button {
     padding: 15px;
 }
 
@@ -179,8 +192,7 @@ form h3 {
 
 input[type="text"],
 input[type="number"] {
-    border: none;
-    border: transparent 2px solid;
+    border: black 2px solid;
     transition: all 0.3s;
 }
 
@@ -188,7 +200,8 @@ input[type="text"]:hover,
 input[type="text"]:focus,
 input[type="number"]:hover,
 input[type="number"]:focus {
-    border: #a2d416 2px solid;
+    border: transparent 2px solid;
+    border-bottom: black 2px solid;
 }
 
 .moreIngridients {
@@ -198,22 +211,23 @@ input[type="number"]:focus {
     grid-column: 1 / -1;
 }
 
-// .newMeal button {
-//     flex: 1 0 100px;
-// }
-
+.newMeal label {
+    margin: 0 10px 30px;
+}
 
 .newMeal input[type="text"],
-.newMeal label,
+.newMeal label {
+    flex: 1 0 280px;
+}
+
 .newMeal input[type="number"] {
-    flex: 1 0 calc(100%/3);
+    flex: 1;
 }
 
 .newMeal > * {
     margin-bottom: 30px;
     text-align: center;
 }
-
 
 .newMeal {
     display: flex;
