@@ -16,7 +16,7 @@
             <h1>Meal generator</h1>
 
             <div class="headerButton">
-                <button id="toMain"><i class="fas fa-angle-double-down"></i></button>
+                <button id="toMain" aria-label="proceed to the next section"><i class="fas fa-angle-double-down" aria-hidden="true"></i></button>
             </div>
     </header>
 
@@ -58,7 +58,7 @@
                     <form action="">
                         <h3>Add new ingridient</h3>
                         <fieldset class="newIngr">
-                            <label for="name" class="sr-only">Name</label>
+                            <label for="name" class="sr-only">Name of a new ingridient to add</label>
                             <input type="text" id="name" placeholder="Name of ingridient (e.g. apple, potato, tomato)"/>
 
                             <button id="addIngridient">ADD INGRIDIENT TO DATABASE</button>
@@ -68,7 +68,7 @@
                     <form action="">
                         <h3>Add new meal</h3>
                         <fieldset class="newMeal">
-                                    <label for="newMealName" class="sr-only"></label>
+                                    <label for="newMealName" class="sr-only">Name of a new meal to add</label>
                                     <input type="text" id="newMealName" placeholder="Name of new recipe"/>
 
                                     <label for="howManyIng">NUMBER OF INGRIDIENTS AND THEIR NAMES</label>

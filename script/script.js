@@ -17,7 +17,7 @@ mealApp.answers = {
 }
 
 // all ingridients
-mealApp.allIngridients = ['banana', 'milk', 'pineapple', 'avocado', 'orange'];
+mealApp.allIngridients = ['banana', 'milk', 'pineapple', 'avocado', 'orange', 'apple', 'bacon', 'carrot', 'egg', 'olives', 'potato', 'tomato'];
 
 // making sure that the counter of cooked meals is always right
 mealApp.cookedMealsCounter = function() {
@@ -32,7 +32,7 @@ mealApp.availableIngridients = function() {
     for (i=0; i < mealApp.allIngridients.length; i++) {
         $('.ingridients').append(`
         <li>
-            <button id="removeIng" class="closeWindow" value="${mealApp.allIngridients[i]}"><i class="fas fa-times"></i></button>
+            <button id="removeIng" class="closeWindow" value=${mealApp.allIngridients[i]} aria-label="remove this ingridient from ingridient database"><i class="fas fa-times" aria-hidden="true"></i></button>
             <p>${mealApp.allIngridients[i]}</p>
             <div><img src="./assets/${mealApp.allIngridients[i]}.png" alt="${mealApp.allIngridients[i]}"></img></div>
             <button id="add" value="${mealApp.allIngridients[i]}">Add</button>
@@ -193,7 +193,7 @@ mealApp.moreIng = () => {
 
     for (i=0; i < howMany; i++) {
         $('.moreIngridients').append(`
-        <label for="ingridient${i+1}" class="sr-only">Name</label>
+        <label for="ingridient${i+1}" class="sr-only">Name of ingridient number ${i+1}</label>
         <input type="text" id="ingridient${i+1}" class="name input-fields ingr" name="name" placeholder="Ingridient #${i+1}"/>
         `)
     }
