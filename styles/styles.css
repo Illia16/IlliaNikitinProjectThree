@@ -449,8 +449,8 @@ footer .linkedin:focus {
 
 .cooked {
   -webkit-box-flex: 1;
-      -ms-flex: 1 0 300px;
-          flex: 1 0 300px;
+      -ms-flex: 1 0 100%;
+          flex: 1 0 100%;
 }
 
 .items {
@@ -462,16 +462,16 @@ footer .linkedin:focus {
 .items,
 .cooked,
 .table {
-  padding: 15px;
+  padding: 15px 0;
 }
 
 .letsCook .table {
-  -webkit-box-ordinal-group: 3;
-      -ms-flex-order: 2;
-          order: 2;
+  -webkit-box-ordinal-group: 1;
+      -ms-flex-order: 0;
+          order: 0;
   -webkit-box-flex: 1;
-      -ms-flex: 1 0 100%;
-          flex: 1 0 100%;
+      -ms-flex: 1 0 200px;
+          flex: 1 0 200px;
 }
 
 .letsCook .table .done {
@@ -575,6 +575,10 @@ button:focus {
   border: 2px solid transparent;
 }
 
+.addNewStuff {
+  background: olivedrab;
+}
+
 .addNewStuff h3 {
   color: #000;
 }
@@ -648,14 +652,14 @@ input[type="number"]:focus {
 .newMeal input[type="text"],
 .newMeal label {
   -webkit-box-flex: 1;
-      -ms-flex: 1 0 280px;
-          flex: 1 0 280px;
+      -ms-flex: 1 0 200px;
+          flex: 1 0 200px;
 }
 
 .newMeal input[type="number"] {
   -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
+      -ms-flex: 1 0 200px;
+          flex: 1 0 200px;
 }
 
 .newMeal > * {
@@ -672,4 +676,25 @@ input[type="number"]:focus {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+}
+
+@media (max-width: 350px) {
+  h1 {
+    font-size: 4.5rem;
+  }
+  .newMeal > * {
+    max-width: 200px;
+  }
+  input::-webkit-input-placeholder {
+    font-size: 1.5rem;
+  }
+  input::-moz-placeholder {
+    font-size: 1.5rem;
+  }
+  input::-moz-placeholder {
+    font-size: 1.5rem;
+  }
+  input:-ms-input-placeholder {
+    font-size: 1.5rem;
+  }
 }

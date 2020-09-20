@@ -46,7 +46,7 @@
 
 // ITEMS
 .cooked {
-    flex: 1 0 300px;
+    flex: 1 0 100%;
 }
 
 .items {
@@ -56,13 +56,13 @@
 .items,
 .cooked,
 .table {
-    padding: 15px;
+    padding: 15px 0;
 }
 
 // TABLE
 .letsCook .table {
-    order: 2;
-    flex: 1 0 100%;
+    order: 0;
+    flex: 1 0 200px;
 }
 
 .letsCook .table .done {
@@ -155,6 +155,10 @@ button:focus {
 
 //FORMS /////////////////////////////////
 
+.addNewStuff {
+    background: olivedrab;
+}
+
 .addNewStuff h3 {
     color: #000;
 }
@@ -217,11 +221,11 @@ input[type="number"]:focus {
 
 .newMeal input[type="text"],
 .newMeal label {
-    flex: 1 0 280px;
+    flex: 1 0 200px;
 }
 
 .newMeal input[type="number"] {
-    flex: 1;
+    flex: 1 0 200px;
 }
 
 .newMeal > * {

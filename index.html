@@ -57,28 +57,31 @@
                 <div class="addNewStuffRecipe">
                     <form action="">
                         <h3>Add new ingridient</h3>
-                        <fieldset class="newIngr">
-                            <label for="name" class="sr-only">Name of a new ingridient to add</label>
-                            <input type="text" id="name" placeholder="Name of ingridient (e.g. apple, potato, tomato)"/>
-
-                            <button id="addIngridient">ADD INGRIDIENT TO DATABASE</button>
+                        <fieldset>
+                            <div class="newIngr">
+                                <label for="name" class="sr-only">Name of a new ingridient to add</label>
+                                <input type="text" id="name" placeholder="Name of ingridient (e.g. apple, potato, tomato)"/>
+                                
+                                <button id="addIngridient">ADD INGRIDIENT TO DATABASE</button>
+                            </div>
                         </fieldset>
                     </form>
 
                     <form action="">
                         <h3>Add new meal</h3>
-                        <fieldset class="newMeal">
-                                    <label for="newMealName" class="sr-only">Name of a new meal to add</label>
-                                    <input type="text" id="newMealName" placeholder="Name of new recipe"/>
-
-                                    <label for="howManyIng">NUMBER OF INGRIDIENTS AND THEIR NAMES</label>
-                                    <input type="number" min="0" inputmode="numeric" pattern="[0-9]*" title="Non-negative integral number" id="howManyIng" step="1" value="1" min="1" max="15">
-                                    <!-- <input type="number" id="howManyIng" step="1" value="1" min="1" max="15"/> -->
-
+                        <fieldset>
+                            <div class="newMeal">
+                                <label for="newMealName" class="sr-only">Name of a new meal to add</label>
+                                <input type="text" id="newMealName" placeholder="Name of new recipe"/>
+                                
+                                <label for="howManyIng">NUMBER OF INGRIDIENTS AND THEIR NAMES</label>
+                                <input type="number" min="0" inputmode="numeric" pattern="[0-9]*" title="Non-negative integral number" id="howManyIng" step="1" value="1" min="1" max="15">
+                                <!-- <input type="number" id="howManyIng" step="1" value="1" min="1" max="15"/> -->
+                                
                                 <div class="moreIngridients">
                                 </div>
-
                                 <button id="addMeal">ADD NEW RECIPE</button>
+                            </div>
                         </fieldset>
                     </form>
                 </div>
