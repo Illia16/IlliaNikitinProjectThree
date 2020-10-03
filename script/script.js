@@ -47,7 +47,10 @@ mealApp.availableIngridients = function() {
 mealApp.ifImageExists = function(el, what){
         let image = new Image();
         image.src = (what === 'ingridient') ? './assets/' + el + '.png' : './assets/meals/' + el + '.png';
-        return image.height ? `${el}`: ( (what === 'ingridient') ? `ingridientPlaceholder` :  `mealPlaceholder` )
+
+        let img = () => image.height;
+        console.log(img());
+        return img ? `${el}`: ( (what === 'ingridient') ? `ingridientPlaceholder` :  `mealPlaceholder` )
 }
 
 // showing all meals in database 
@@ -238,7 +241,5 @@ mealApp.init = function() {
 
 //Document ready
 $(function() {
-    setTimeout(() => {
-        mealApp.init();
-    }, 300);
+    mealApp.init();
 })
