@@ -258,7 +258,5 @@ mealApp.init = function() {
 }
 //Document ready
 $(function() {
-    setTimeout(() => {
-        mealApp.init();
-    }, 100);
+    mealApp.init();
 })
