@@ -30,28 +30,35 @@ mealApp.cookedMealsCounter = function() {
 mealApp.availableIngridients = function() {
     $('.ingridients').text('');
     for (i=0; i < mealApp.allIngridients.length; i++) {
+        let ingr = mealApp.ifImageExists(mealApp.allIngridients[i], 'ingridient');
         $('.ingridients').append(`
         <li>
             <button id="removeIng" class="closeWindow" value=${mealApp.allIngridients[i]} aria-label="remove this ingridient from ingridient database"><i class="fas fa-times" aria-hidden="true"></i></button>
             <p>${mealApp.allIngridients[i]}</p>
-            <div><img src="./assets/${mealApp.allIngridients[i]}.png" alt="${mealApp.allIngridients[i]}"></img></div>
+            <div> <img src="./assets/${ingr}.png" alt="${mealApp.allIngridients[i]}"></img></div>
             <button id="add" value="${mealApp.allIngridients[i]}">Add</button>
         </li>
         `);
     }
+}
 
-    mealApp.moreIng();
+// function to check if image exists in the folder/server
+mealApp.ifImageExists = function(el, what){
+        let image = new Image();
+        image.src = what === 'ingridient' ? './assets/' + el + '.png' : './assets/meals/' + el + '.png';
+        return image.height ? `${el}`: ( (what === 'ingridient') ? `ingridientPlaceholder` :  `mealPlaceholder` )
 }
 
 // showing all meals in database 
 mealApp.allMeals = function() {
     $('.cookedMeals').text('');
     for (const meals in  mealApp.answers) {
+        let meal = mealApp.ifImageExists(meals, 'meal');
         if (mealApp.cookedMealsIfCooked[meals]) {
             $('.cookedMeals').append(`
             <li class="${meals} unlocked">
                 <span>${mealApp.cookedMeals[meals]}</span><p>${meals}</p>
-                <div><img src="./assets/meals/${meals}.png" alt="${meals}"></img></div>
+                <div><img src="./assets/meals/${meal}.png" alt="${meals}"></img></div>
                 <p>Ingridients needed: ${mealApp.answers[meals].join(', ')}</p>
             </li>
             `);
@@ -59,7 +66,7 @@ mealApp.allMeals = function() {
             $('.cookedMeals').append(`
             <li class="${meals}">
                 <span></span><p>${meals}</p>
-                <div><img src="./assets/meals/${meals}.png" alt="${meals}"></img></div>
+                <div><img src="./assets/meals/${meal}.png" alt="${meals}"></img></div>
                 <p>Ingridients needed: ${mealApp.answers[meals].join(', ')}</p>
             </li>
             `);
@@ -120,10 +127,13 @@ $('ul').on('click', '#remove', function(){
     const toRemove = $(this).val();
     const toRemoveIndex = mealApp.chosenIngridients.indexOf(toRemove);
 
+    console.log(mealApp.chosenIngridients, toRemove, toRemoveIndex);
+
+    // just in case there's a REMOVE ALL button on the table(for now is not used) and removing individual table items from ingridient section(also not used to now) 
     if (mealApp.chosenIngridients.length === 0) {
-        console.log('Nothing\'s on the table!');
+        alert('Nothing\'s on the table!');
     } else if (toRemoveIndex === -1) {
-        console.log(`${toRemove} is not on the table!`);
+        alert(`${toRemove} is not on the table!`);
     } else mealApp.chosenIngridients.splice(toRemoveIndex, 1);
 
     mealApp.checkIfCooked();
@@ -136,9 +146,8 @@ $('#addIngridient').on('click', function(event){
     const ingridientToAdd = $(this).prev().val();
 
     if (ingridientToAdd === '' || !isNaN(ingridientToAdd)) {
-        console.log('Error');
+        alert('Invalid ingridient name');
     } else {
-        $(this).prev().val('');
         mealApp.allIngridients.push(ingridientToAdd.toLowerCase());
     }
     mealApp.availableIngridients();
@@ -152,35 +161,28 @@ $('#addMeal').on('click', function(event){
     event.preventDefault();
     // name of new meal
     const newMeal = ($('#newMealName').val()).toLowerCase().split(' ').join('');
-
     mealApp.ingr = [];
+    let anyFalsyInputs = false;
+    const howMany = $('#howManyIng').val();
 
-    $('.ingr').each(function(){
-        const ingr = $(this).val();
+    for (let i=0; i < howMany; i++) {
+        const ingridiendToAdd = $(`#ingridient${i+1}`).val();
+        !ingridiendToAdd || !isNaN(parseInt(ingridiendToAdd)) ? anyFalsyInputs = true : mealApp.ingr.push(ingridiendToAdd);
+    }
 
-        if (ingr === "") {
-            console.log('Error');
-            console.log(mealApp.ingr);
-        } else {
-            mealApp.ingr.push($(this).val());
-        }
-    });
-
-    if (newMeal === '' || !isNaN(parseInt(newMeal)) || mealApp.ingr.length === 0 || mealApp.answers.hasOwnProperty(newMeal)) {
-        console.log('Enter a valid name of the new meal');
-        console.log("updated menu:", mealApp.answers);
-    } else  
+    if (!newMeal || !isNaN(parseInt(newMeal)) || !mealApp.ingr.length || mealApp.answers.hasOwnProperty(newMeal) || anyFalsyInputs) {
+        alert('One of the inputs is invalid or the meal is already added');
+        return
+    } else
         {
             // how many ingridients
             mealApp.answers[newMeal] = [];
             mealApp.cookedMeals[newMeal] = 0;
-            const howMany = $('#howManyIng').val();
 
-            for(i=0; i < howMany; i++) {
-                const ingridiendToAdd = $(`#ingridient${i+1}`).val();
+            for(let j=0; j < howMany; j++) {
+                const ingridiendToAdd = $(`#ingridient${j+1}`).val();
                 mealApp.answers[newMeal].push(ingridiendToAdd.toLowerCase());
             }
-
             mealApp.allMeals();
         }
 });
@@ -212,10 +214,10 @@ $('#howManyIng').on('change', function(event){
     }
 });
 
-    $('#toMain').on('click', function(event){
-        event.preventDefault();
-        mealApp.scroll('section');
-    });
+$('#toMain').on('click', function(event){
+    event.preventDefault();
+    mealApp.scroll('section');
+});
 
 //smooth scrool to come to a desired part of the page
 mealApp.scroll = function(element) {
@@ -227,6 +229,7 @@ mealApp.scroll = function(element) {
 };
 
 mealApp.init = function() {
+    mealApp.moreIng();
     mealApp.availableIngridients();
     mealApp.cookedMealsCounter();
     mealApp.allMeals();
