@@ -18,7 +18,7 @@
 .howToUse .wrapper > * {
     margin-bottom: 30px;
     align-self: flex-end;
-    width: 300px;
+    max-width: 60%;
     text-align: left;
 }
 
@@ -154,9 +154,13 @@ button:focus {
 
 
 //FORMS /////////////////////////////////
-
 .addNewStuff {
     background: olivedrab;
+
+    button:hover,
+    button:focus {
+        background: white;
+    }
 }
 
 .addNewStuff h3 {

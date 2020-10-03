@@ -1,3 +1,13 @@
+@media (max-width: 500px) {
+    h1 {
+        font-size: 6rem;
+    }
+
+    .errorWindowBack .popUpError {
+        width: 90%;
+        left: 5%;
+    }
+}
 @media (max-width: 350px) {
     h1 {
         font-size: 4.5rem;
@@ -5,6 +15,10 @@
 
     .newMeal > * {
         max-width: 200px;
+    }
+
+    .howToUse .wrapper > * {
+        max-width: 80%;
     }
     
     input::-webkit-input-placeholder {

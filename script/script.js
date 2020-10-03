@@ -45,12 +45,19 @@ mealApp.availableIngridients = function() {
 
 // function to check if image exists in the folder/server
 mealApp.ifImageExists = function(el, what){
-        let image = new Image();
-        image.src = (what === 'ingridient') ? './assets/' + el + '.png' : './assets/meals/' + el + '.png';
+    let image = new Image();
+    image.src = (what === 'ingridient') ? './assets/' + el + '.png' : './assets/meals/' + el + '.png';
+    console.log(image.height);
 
-        let img = () => image.height;
-        console.log(img());
-        return img ? `${el}`: ( (what === 'ingridient') ? `ingridientPlaceholder` :  `mealPlaceholder` )
+        // $("img").one("load", function() {
+        // let image = new Image();
+        // image.src = (what === 'ingridient') ? './assets/' + el + '.png' : './assets/meals/' + el + '.png';
+        // }).each(function() {
+        //     if(this.complete) {
+        //         $(this).trigger('load'); // For jQuery >= 3.0 
+        //     }
+        // });
+    return image.height ? `${el}`: ( (what === 'ingridient') ? `ingridientPlaceholder` :  `mealPlaceholder` )
 }
 
 // showing all meals in database 
@@ -131,8 +138,6 @@ $('ul').on('click', '#remove', function(){
     const toRemove = $(this).val();
     const toRemoveIndex = mealApp.chosenIngridients.indexOf(toRemove);
 
-    console.log(mealApp.chosenIngridients, toRemove, toRemoveIndex);
-
     // just in case there's a REMOVE ALL button on the table(for now is not used) and removing individual table items from ingridient section(also not used to now) 
     if (mealApp.chosenIngridients.length === 0) {
         alert('Nothing\'s on the table!');
@@ -147,14 +152,18 @@ $('ul').on('click', '#remove', function(){
 // adding a new ingridient to database
 $('#addIngridient').on('click', function(event){
     event.preventDefault();
+    // console.log($(this).prev().val());
     const ingridientToAdd = $(this).prev().val();
 
     if (ingridientToAdd === '' || !isNaN(ingridientToAdd)) {
-        alert('Invalid ingridient name');
+        $('.popUpError p').text('');
+        $('.errorWindowBack').fadeIn(300);
+        $('.popUpError p').append('Invalid ingridient name');
     } else {
         mealApp.allIngridients.push(ingridientToAdd.toLowerCase());
     }
     mealApp.availableIngridients();
+    $(this).prev().val('');
 });
 
 // creating an empty array to check if name of added meals is defined
@@ -175,7 +184,10 @@ $('#addMeal').on('click', function(event){
     }
 
     if (!newMeal || !isNaN(parseInt(newMeal)) || !mealApp.ingr.length || mealApp.answers.hasOwnProperty(newMeal) || anyFalsyInputs) {
-        alert('One of the inputs is invalid or the meal is already added');
+        $('.popUpError p').text('');
+        $('.errorWindowBack').fadeIn(300);
+        $('.popUpError p').append('One of the inputs is invalid or the meal is already added');
+        // alert('One of the inputs is invalid or the meal is already added');
         return
     } else
         {
@@ -232,13 +244,17 @@ mealApp.scroll = function(element) {
 	);
 };
 
+
+$('#closeError').on('click', function(){
+    $('.errorWindowBack').fadeOut(300);
+})
+
 mealApp.init = function() {
     mealApp.moreIng();
     mealApp.availableIngridients();
     mealApp.cookedMealsCounter();
     mealApp.allMeals();
 }
-
 //Document ready
 $(function() {
     mealApp.init();

@@ -15,7 +15,7 @@ h3 {
 
 h1 { 
     justify-self: center;
-    font-size: 7.5rem;
+    font-size: 9rem;
     opacity: .85;
 }
 
@@ -44,17 +44,11 @@ header {
     background-repeat: no-repeat;
     min-height: 100vh;
 
-    display: grid;
-}
-
-h1,
-header .headerButton {
-    align-self: end;
-}
-
-header .headerButton {
-    margin-bottom: 100px;
-    justify-self: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    padding-top: 10%;
 }
 
 h1,
@@ -67,12 +61,21 @@ header .headerButton button {
     background: transparent;
     border: transparent;
     font-size: 5rem;
+    animation-name: btnJumpy;
+    animation-duration: 2.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+
+    :hover {
+        transform: scale(1.5);
+    }
 }
 
-header .headerButton button:hover,
-header .headerButton button:focus {
-    scale: 1.5;
-    transition: all 0.3s;
+@keyframes btnJumpy {
+    25%  {transform: scale(1.25);}
+    50% {transform: scale(1);}
+    75% {transform: scale(1.25);}
+    100% {transform: scale(1);}
 }
 
 ::placeholder {
@@ -80,7 +83,6 @@ header .headerButton button:focus {
 }
 
 // Footer
-
 footer {
     background: #000;
     color: #ffffff;
@@ -108,4 +110,39 @@ footer .github:focus,
 footer .linkedin:hover,
 footer .linkedin:focus {
     transform: scale(1.2);
+}
+
+
+// Error window
+.errorWindowBack {
+    position: fixed;
+    background-color: rgb(245, 240, 240);
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: none;
+
+    .popUpError {
+        position: fixed;
+        opacity: 1;
+        top: 30%;
+        left: calc(100%/2 - 400px/2);
+        width: 50vw;
+        max-width: 400px;
+        text-align: center;
+
+        p {
+            color: #000000;
+            margin: 40px 0;
+            font-size: 3rem;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        button {
+            width: 150px;
+            height: 50px;
+        }
+    }
 }

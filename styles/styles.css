@@ -282,7 +282,7 @@ h3 {
 h1 {
   -ms-grid-column-align: center;
       justify-self: center;
-  font-size: 7.5rem;
+  font-size: 9rem;
   opacity: .85;
 }
 
@@ -309,21 +309,19 @@ header {
   background-size: cover;
   background-repeat: no-repeat;
   min-height: 100vh;
-  display: -ms-grid;
-  display: grid;
-}
-
-h1,
-header .headerButton {
-  -ms-flex-item-align: end;
-      -ms-grid-row-align: end;
-      align-self: end;
-}
-
-header .headerButton {
-  margin-bottom: 100px;
-  -ms-grid-column-align: center;
-      justify-self: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  padding-top: 10%;
 }
 
 h1,
@@ -336,13 +334,57 @@ header .headerButton button {
   background: transparent;
   border: transparent;
   font-size: 5rem;
+  -webkit-animation-name: btnJumpy;
+          animation-name: btnJumpy;
+  -webkit-animation-duration: 2.5s;
+          animation-duration: 2.5s;
+  -webkit-animation-timing-function: linear;
+          animation-timing-function: linear;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
 }
 
-header .headerButton button:hover,
-header .headerButton button:focus {
-  scale: 1.5;
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
+header .headerButton button :hover {
+  -webkit-transform: scale(1.5);
+          transform: scale(1.5);
+}
+
+@-webkit-keyframes btnJumpy {
+  25% {
+    -webkit-transform: scale(1.25);
+            transform: scale(1.25);
+  }
+  50% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  75% {
+    -webkit-transform: scale(1.25);
+            transform: scale(1.25);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+@keyframes btnJumpy {
+  25% {
+    -webkit-transform: scale(1.25);
+            transform: scale(1.25);
+  }
+  50% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  75% {
+    -webkit-transform: scale(1.25);
+            transform: scale(1.25);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
 }
 
 ::-webkit-input-placeholder {
@@ -396,6 +438,39 @@ footer .linkedin:focus {
           transform: scale(1.2);
 }
 
+.errorWindowBack {
+  position: fixed;
+  background-color: #f5f0f0;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: none;
+}
+
+.errorWindowBack .popUpError {
+  position: fixed;
+  opacity: 1;
+  top: 30%;
+  left: calc(100%/2 - 400px/2);
+  width: 50vw;
+  max-width: 400px;
+  text-align: center;
+}
+
+.errorWindowBack .popUpError p {
+  color: #000000;
+  margin: 40px 0;
+  font-size: 3rem;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.errorWindowBack .popUpError button {
+  width: 150px;
+  height: 50px;
+}
+
 .howToUse {
   background: url(../assets/sectionOneBackground.jpg);
   background-size: cover;
@@ -422,7 +497,7 @@ footer .linkedin:focus {
   margin-bottom: 30px;
   -ms-flex-item-align: end;
       align-self: flex-end;
-  width: 300px;
+  max-width: 60%;
   text-align: left;
 }
 
@@ -579,6 +654,11 @@ button:focus {
   background: olivedrab;
 }
 
+.addNewStuff button:hover,
+.addNewStuff button:focus {
+  background: white;
+}
+
 .addNewStuff h3 {
   color: #000;
 }
@@ -678,12 +758,25 @@ input[type="number"]:focus {
           justify-content: center;
 }
 
+@media (max-width: 500px) {
+  h1 {
+    font-size: 6rem;
+  }
+  .errorWindowBack .popUpError {
+    width: 90%;
+    left: 5%;
+  }
+}
+
 @media (max-width: 350px) {
   h1 {
     font-size: 4.5rem;
   }
   .newMeal > * {
     max-width: 200px;
+  }
+  .howToUse .wrapper > * {
+    max-width: 80%;
   }
   input::-webkit-input-placeholder {
     font-size: 1.5rem;
