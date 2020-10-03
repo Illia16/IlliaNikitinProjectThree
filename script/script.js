@@ -45,19 +45,21 @@ mealApp.availableIngridients = function() {
 
 // function to check if image exists in the folder/server
 mealApp.ifImageExists = function(el, what){
-    let image = new Image();
-    image.src = (what === 'ingridient') ? './assets/' + el + '.png' : './assets/meals/' + el + '.png';
-    console.log(image.height);
+    let img = new Image();
+    img.src = (what === 'ingridient') ? './assets/' + el + '.png' : './assets/meals/' + el + '.png';
+    console.log(img.height);
 
-        // $("img").one("load", function() {
-        // let image = new Image();
-        // image.src = (what === 'ingridient') ? './assets/' + el + '.png' : './assets/meals/' + el + '.png';
-        // }).each(function() {
-        //     if(this.complete) {
-        //         $(this).trigger('load'); // For jQuery >= 3.0 
-        //     }
-        // });
-    return image.height ? `${el}`: ( (what === 'ingridient') ? `ingridientPlaceholder` :  `mealPlaceholder` )
+
+    // let img = document.createElement('img');
+        // let img = new Image();
+        // $(img.onload = function(){
+        //     console.log(img);
+        //     console.log(img.height);
+        // })
+    //img.src = (what === 'ingridient') ? './assets/' + el + '.png' : './assets/meals/' + el + '.png';
+    // console.log(img.src);
+    
+    return img.height ? `${el}`: ( (what === 'ingridient') ? `ingridientPlaceholder` :  `mealPlaceholder` )
 }
 
 // showing all meals in database 
@@ -187,7 +189,6 @@ $('#addMeal').on('click', function(event){
         $('.popUpError p').text('');
         $('.errorWindowBack').fadeIn(300);
         $('.popUpError p').append('One of the inputs is invalid or the meal is already added');
-        // alert('One of the inputs is invalid or the meal is already added');
         return
     } else
         {
@@ -257,5 +258,7 @@ mealApp.init = function() {
 }
 //Document ready
 $(function() {
-    mealApp.init();
+    setTimeout(() => {
+        mealApp.init();
+    }, 100);
 })
