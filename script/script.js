@@ -27,10 +27,10 @@ mealApp.cookedMealsCounter = function() {
 }
 
 // Filling DOM with available ingridients
-mealApp.availableIngridients = function() {
+mealApp.availableIngridients = async function() {
     $('.ingridients').text('');
     for (i=0; i < mealApp.allIngridients.length; i++) {
-        let ingr = mealApp.ifImageExists(mealApp.allIngridients[i], 'ingridient');
+        let ingr = await mealApp.ifImageExists(mealApp.allIngridients[i], 'ingridient');
         $('.ingridients').append(`
         <li>
             <button id="removeIng" class="closeWindow" value=${mealApp.allIngridients[i]} aria-label="remove this ingridient from ingridient database"><i class="fas fa-times" aria-hidden="true"></i></button>
