@@ -45,25 +45,9 @@ mealApp.availableIngridients = function() {
 
 // function to check if image exists in the folder/server
 mealApp.ifImageExists = function(el, what){
-    // let img = new Image();
-    // img.src = (what === 'ingridient') ? './assets/' + el + '.png' : './assets/meals/' + el + '.png';
-    // console.log(img.height);
-
-    // let img = new Image();
-    // img.src = (what === 'ingridient') ? './assets/' + el + '.png' : './assets/meals/' + el + '.png';
-    // let height = 0;
-    // $(img).on('load', function() {
-    //     console.log(this.height);
-    //     height = this.height
-    // });
-    // console.log(height);
-
     let $img = $('<img>');
-    $img.on('load', function(){
-        console.log($(this).width());
-    });
+    $img.on('load', function(){ });
     $img.attr('src', (what === 'ingridient') ? './assets/' + el + '.png' : './assets/meals/' + el + '.png');
-
     return $img.height ? `${el}`: ( (what === 'ingridient') ? `ingridientPlaceholder` :  `mealPlaceholder` );
 }
 
