@@ -27,10 +27,11 @@ mealApp.cookedMealsCounter = function() {
 }
 
 // Filling DOM with available ingridients
-mealApp.availableIngridients = async function() {
+mealApp.availableIngridients = function() {
     $('.ingridients').text('');
     for (i=0; i < mealApp.allIngridients.length; i++) {
-        let ingr = await mealApp.ifImageExists(mealApp.allIngridients[i], 'ingridient');
+        let ingr = mealApp.ifImageExists(mealApp.allIngridients[i], 'ingridient');
+
         $('.ingridients').append(`
         <li>
             <button id="removeIng" class="closeWindow" value=${mealApp.allIngridients[i]} aria-label="remove this ingridient from ingridient database"><i class="fas fa-times" aria-hidden="true"></i></button>
@@ -40,12 +41,12 @@ mealApp.availableIngridients = async function() {
         </li>
         `);
     }
-}
+};
 
 // function to check if image exists in the folder/server
 mealApp.ifImageExists = function(el, what){
         let image = new Image();
-        image.src = what === 'ingridient' ? './assets/' + el + '.png' : './assets/meals/' + el + '.png';
+        image.src = (what === 'ingridient') ? './assets/' + el + '.png' : './assets/meals/' + el + '.png';
         return image.height ? `${el}`: ( (what === 'ingridient') ? `ingridientPlaceholder` :  `mealPlaceholder` )
 }
 
@@ -237,5 +238,7 @@ mealApp.init = function() {
 
 //Document ready
 $(function() {
-    mealApp.init();
+    setTimeout(() => {
+        mealApp.init();
+    }, 300);
 })
