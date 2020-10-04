@@ -43,22 +43,18 @@ mealApp.availableIngridients = function() {
     }
 };
 
+
 // function to check if image exists in the folder/server
 mealApp.ifImageExists = function(el, what){
-    // let $img = $('<img>');
-    // let $img = new Image()
-    // $img.attr('src', (what === 'ingridient') ? './assets/' + el + '.png' : './assets/meals/' + el + '.png');
-    // $img.on('load', function(){ 
-    //     console.log($img.height());
-    // });
-    // console.log($img.height());
 
-    let img = new Image()
-    img.onload = function(){
-        console.log(this.height);
-    }
-
+    let img = new Image();
     img.src = (what === 'ingridient') ? './assets/' + el + '.png' : './assets/meals/' + el + '.png';
+
+    // img.onload = function(){
+    //     console.log(this.height);
+    // }
+
+    console.log(img.height);
     return img.height ? `${el}`: ( (what === 'ingridient') ? `ingridientPlaceholder` :  `mealPlaceholder` );
 }
 
@@ -257,6 +253,25 @@ mealApp.init = function() {
     mealApp.allMeals();
 }
 //Document ready
-$(function() {
+// $(function() {
+//     mealApp.init();
+// })
+
+// hardcoded for now so that all images are uploaded properly
+$(document).ready(function() {
     mealApp.init();
-})
+
+    let imagesLoaded = 0;
+    let totalImg = $('img').length;
+    console.log('Total Images', totalImg);
+    $('img').on('load', function() {
+        imagesLoaded++;
+        if (imagesLoaded == totalImg) {
+            allImagesLoaded();
+        }
+    });
+
+    function allImagesLoaded() {
+        mealApp.init();
+    }
+});
